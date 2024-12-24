@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -15,34 +14,38 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
   String? selectedGender;
   String? selectedclass;
   String? selectedfrequency;
-  List<Map<String, dynamic>> _buisnesscard = [];
-  List<Map<String, dynamic>> _clinicpic = [];
+  final List<Map<String, dynamic>> _buisnesscard = [];
+  final List<Map<String, dynamic>> _clinicpic = [];
 
   Future<void> _pickImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      File file = File(pickedFile.path);
-      setState(() {
-        _buisnesscard.add({
-          'file': file,
-          'name': pickedFile.name,
-          'size': file.lengthSync() / (1024 * 1024), // Size in MB
+    final pickedFile = await _picker.pickMultiImage();
+    if (pickedFile.isNotEmpty) {
+      for (var pickedFile in pickedFile) {
+        File file = File(pickedFile.path);
+        setState(() {
+          _buisnesscard.add({
+            'file': file,
+            'name': pickedFile.name,
+            'size': file.lengthSync() / (1024 * 1024),
+          });
         });
-      });
+      }
     }
   }
 
   Future<void> _pickImageforclinic() async {
-    final imagepicked = await _picker.pickImage(source: ImageSource.gallery);
-    if (imagepicked != null) {
-      File file = File(imagepicked.path);
-      setState(() {
-        _clinicpic.add({
-          'file': file,
-          'name': imagepicked.name,
-          'size': file.lengthSync() / (1024 * 1024), // Size in MB
+    final imagepicked = await _picker.pickMultiImage();
+    if (imagepicked.isNotEmpty) {
+      for (var imagepicked in imagepicked) {
+        File file = File(imagepicked.path);
+        setState(() {
+          _clinicpic.add({
+            'file': file,
+            'name': imagepicked.name,
+            'size': file.lengthSync() / (1024 * 1024),
+          });
         });
-      });
+      }
     }
   }
 
@@ -68,7 +71,7 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0), // Padding for alignment
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -439,6 +442,7 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   '3',
                   '4',
                 ]
+                    // ignore: non_constant_identifier_names
                     .map((Frequency) => DropdownMenuItem<String>(
                           value: Frequency,
                           child: Text(Frequency),
@@ -460,24 +464,24 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
               ),
               SizedBox(height: 25),
-              Container(
-                width: 400,
-                height: 150,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue, width: 2),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: _pickImage, // Opens gallery when clicked
-                      child: Container(
+              GestureDetector(
+                onTap:
+                    _pickImage, // Opens gallery when the container is clicked
+                child: Container(
+                  width: 400,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blue, width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                          //color: Colors.blueAccent,
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: const Icon(
@@ -486,26 +490,27 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                           size: 40,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 3),
-                    const Text(
-                      'Upload File',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.blue,
+                      const SizedBox(height: 3),
+                      const Text(
+                        'Upload File',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 1),
-                    const Text(
-                      'Max file size: 25MB',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+                      const SizedBox(height: 1),
+                      const Text(
+                        'Max file size: 25MB',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
+
               const SizedBox(height: 25),
               // Uploaded File Card
               ListView.builder(
@@ -556,24 +561,24 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
               ),
               SizedBox(height: 25),
-              Container(
-                width: 400,
-                height: 150,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue, width: 2),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: _pickImageforclinic, // Opens gallery when clicked
-                      child: Container(
+              GestureDetector(
+                onTap:
+                    _pickImageforclinic, // Opens gallery when the container is clicked
+                child: Container(
+                  width: 400,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blue, width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                          //color: Colors.blueAccent,
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: const Icon(
@@ -582,26 +587,27 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                           size: 40,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 3),
-                    const Text(
-                      'Upload File',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.blue,
+                      const SizedBox(height: 3),
+                      const Text(
+                        'Upload File',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 1),
-                    const Text(
-                      'Max file size: 25MB',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+                      const SizedBox(height: 1),
+                      const Text(
+                        'Max file size: 25MB',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
+
               const SizedBox(height: 25),
               // Uploaded File Card
               ListView.builder(

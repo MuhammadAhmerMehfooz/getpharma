@@ -18,30 +18,34 @@ class _AddDoctorState extends State<AddDoctor> {
   List<Map<String, dynamic>> _clinicpic = [];
 
   Future<void> _pickImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      File file = File(pickedFile.path);
-      setState(() {
-        _buisnesscard.add({
-          'file': file,
-          'name': pickedFile.name,
-          'size': file.lengthSync() / (1024 * 1024), // Size in MB
+    final pickedFile = await _picker.pickMultiImage();
+    if (pickedFile != null && pickedFile.isNotEmpty) {
+      for (var pickedFile in pickedFile) {
+        File file = File(pickedFile.path);
+        setState(() {
+          _buisnesscard.add({
+            'file': file,
+            'name': pickedFile.name,
+            'size': file.lengthSync() / (1024 * 1024),
+          });
         });
-      });
+      }
     }
   }
 
   Future<void> _pickImageforclinic() async {
-    final imagepicked = await _picker.pickImage(source: ImageSource.gallery);
-    if (imagepicked != null) {
-      File file = File(imagepicked.path);
-      setState(() {
-        _clinicpic.add({
-          'file': file,
-          'name': imagepicked.name,
-          'size': file.lengthSync() / (1024 * 1024), // Size in MB
+    final imagepicked = await _picker.pickMultiImage();
+    if (imagepicked != null && imagepicked.isNotEmpty) {
+      for (var imagepicked in imagepicked) {
+        File file = File(imagepicked.path);
+        setState(() {
+          _clinicpic.add({
+            'file': file,
+            'name': imagepicked.name,
+            'size': file.lengthSync() / (1024 * 1024), // Size in MB
+          });
         });
-      });
+      }
     }
   }
 
@@ -453,24 +457,24 @@ class _AddDoctorState extends State<AddDoctor> {
                 ),
               ),
               SizedBox(height: 25),
-              Container(
-                width: 400,
-                height: 150,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue, width: 2),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: _pickImage, // Opens gallery when clicked
-                      child: Container(
+              GestureDetector(
+                onTap:
+                    _pickImage, // Opens gallery when the container is clicked
+                child: Container(
+                  width: 400,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blue, width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                          //color: Colors.blueAccent,
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: const Icon(
@@ -479,26 +483,27 @@ class _AddDoctorState extends State<AddDoctor> {
                           size: 40,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 3),
-                    const Text(
-                      'Upload File',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.blue,
+                      const SizedBox(height: 3),
+                      const Text(
+                        'Upload File',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 1),
-                    const Text(
-                      'Max file size: 25MB',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+                      const SizedBox(height: 1),
+                      const Text(
+                        'Max file size: 25MB',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
+
               const SizedBox(height: 25),
               // Uploaded File Card
               ListView.builder(
@@ -549,24 +554,24 @@ class _AddDoctorState extends State<AddDoctor> {
                 ),
               ),
               SizedBox(height: 25),
-              Container(
-                width: 400,
-                height: 150,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue, width: 2),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: _pickImageforclinic, // Opens gallery when clicked
-                      child: Container(
+              GestureDetector(
+                onTap:
+                    _pickImageforclinic, // Opens gallery when the container is clicked
+                child: Container(
+                  width: 400,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.blue, width: 2),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                          //color: Colors.blueAccent,
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: const Icon(
@@ -575,26 +580,27 @@ class _AddDoctorState extends State<AddDoctor> {
                           size: 40,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 3),
-                    const Text(
-                      'Upload File',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.blue,
+                      const SizedBox(height: 3),
+                      const Text(
+                        'Upload File',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 1),
-                    const Text(
-                      'Max file size: 25MB',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey,
+                      const SizedBox(height: 1),
+                      const Text(
+                        'Max file size: 25MB',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
+
               const SizedBox(height: 25),
               // Uploaded File Card
               ListView.builder(
