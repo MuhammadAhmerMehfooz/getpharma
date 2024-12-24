@@ -62,6 +62,17 @@ flutter:
   assets:
     - assets/images/crmpic.png
     - assets/images/square.png
+    - assets/images/buisnesscard1.jpg
+    - assets/images/buisnesscard2.jpg
+    - assets/images/buisnesscard3.jpg
+    - assets/images/buisnesscard4.jpg
+    - assets/images/clicnic1.jpg
+    - assets/images/clicnic2.jpg
+    - assets/images/clicnic3.jpg
+    - assets/images/clicnic4.jpg
+
+
+   
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

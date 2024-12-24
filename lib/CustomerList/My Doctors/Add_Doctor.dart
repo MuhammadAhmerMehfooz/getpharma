@@ -12,6 +12,8 @@ class AddDoctor extends StatefulWidget {
 class _AddDoctorState extends State<AddDoctor> {
   final ImagePicker _picker = ImagePicker();
   String? selectedGender;
+  String? selectedclass;
+  String? selectedfrequency;
   List<Map<String, dynamic>> _buisnesscard = [];
   List<Map<String, dynamic>> _clinicpic = [];
 
@@ -379,7 +381,7 @@ class _AddDoctorState extends State<AddDoctor> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: selectedGender,
+                value: selectedclass,
                 decoration: InputDecoration(
                   labelText: 'Class',
                   labelStyle: const TextStyle(
@@ -398,20 +400,20 @@ class _AddDoctorState extends State<AddDoctor> {
                   'C',
                   'D',
                 ]
-                    .map((gender) => DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
+                    .map((classtype) => DropdownMenuItem<String>(
+                          value: classtype,
+                          child: Text(classtype),
                         ))
                     .toList(),
                 onChanged: (value) {
                   setState(() {
-                    selectedGender = value; // Dropdown value update
+                    selectedclass = value; // Dropdown value update
                   });
                 },
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: selectedGender,
+                value: selectedfrequency,
                 decoration: InputDecoration(
                   labelText: 'Frequency',
                   labelStyle: const TextStyle(
@@ -430,14 +432,14 @@ class _AddDoctorState extends State<AddDoctor> {
                   '3',
                   '4',
                 ]
-                    .map((gender) => DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
+                    .map((Frequency) => DropdownMenuItem<String>(
+                          value: Frequency,
+                          child: Text(Frequency),
                         ))
                     .toList(),
                 onChanged: (value) {
                   setState(() {
-                    selectedGender = value; // Dropdown value update
+                    selectedfrequency = value; // Dropdown value update
                   });
                 },
               ),

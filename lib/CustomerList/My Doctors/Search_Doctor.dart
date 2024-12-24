@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getpharma/CustomerList/My%20Doctors/Add_Doctor.dart';
+import 'package:getpharma/CustomerList/My%20Doctors/Add_to_MyList_dr.dart';
 
 class SearchDoctor extends StatefulWidget {
   const SearchDoctor({super.key});
@@ -17,6 +18,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
 
   bool isSpecialPrescriber = false;
   List<Map<String, String>> doctorList = [];
+  bool _isScrolled = false;
 
   void _searchDoctor() {
     // Dummy data for demonstration
@@ -58,211 +60,221 @@ class _SearchDoctorState extends State<SearchDoctor> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Name field
-              TextField(
-                cursorColor: Colors.blue,
-                controller: nameController,
-                decoration: InputDecoration(
-                  labelText: 'Name',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-
-              // Special Prescriber Checkbox
-              Row(
-                children: [
-                  Transform.scale(
-                    scale: 0.8, // Reducing the size of the checkbox
-                    child: Checkbox(
-                      value: isSpecialPrescriber,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isSpecialPrescriber = value ?? false;
-                        });
-                      },
-                      activeColor: Colors.blue,
+      body: NotificationListener<ScrollNotification>(
+        onNotification: (scrollNotification) {
+          if (scrollNotification is ScrollUpdateNotification) {
+            setState(() {
+              _isScrolled = scrollNotification.metrics.pixels > 0;
+            });
+          }
+          return true;
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Name field
+                TextField(
+                  cursorColor: Colors.blue,
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                    labelStyle: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  const Text(
-                    'Special Prescriber',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-
-              TextField(
-                cursorColor: Colors.blue,
-                controller: cnicController,
-                decoration: InputDecoration(
-                  labelText: 'CNIC Number',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                 ),
-                keyboardType: TextInputType.number,
-              ),
+                SizedBox(height: 10),
 
-              SizedBox(height: 16),
-
-              TextField(
-                cursorColor: Colors.blue,
-                controller: pmdcController,
-                decoration: InputDecoration(
-                  labelText: 'PMDC Number',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 16),
-
-              TextField(
-                cursorColor: Colors.blue,
-                controller: phoneController,
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                keyboardType: TextInputType.phone,
-              ),
-              SizedBox(height: 30),
-
-              Center(
-                child: SizedBox(
-                  width: 200,
-                  child: ElevatedButton(
-                    onPressed: _searchDoctor,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green[400],
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
+                // Special Prescriber Checkbox
+                Row(
+                  children: [
+                    Transform.scale(
+                      scale: 0.8, // Reducing the size of the checkbox
+                      child: Checkbox(
+                        value: isSpecialPrescriber,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isSpecialPrescriber = value ?? false;
+                          });
+                        },
+                        activeColor: Colors.blue,
                       ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          side: BorderSide(
-                              color: Colors.lightGreen.shade900, width: 3)),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.search,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          "Search",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                      ],
+                    const Text(
+                      'Special Prescriber',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16),
+
+                TextField(
+                  cursorColor: Colors.blue,
+                  controller: cnicController,
+                  decoration: InputDecoration(
+                    labelText: 'CNIC Number',
+                    labelStyle: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+
+                SizedBox(height: 16),
+
+                TextField(
+                  cursorColor: Colors.blue,
+                  controller: pmdcController,
+                  decoration: InputDecoration(
+                    labelText: 'PMDC Number',
+                    labelStyle: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 30),
 
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: doctorList.length,
-                itemBuilder: (context, index) {
-                  return _buildDoctorCard(doctorList[index], index + 1);
-                },
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Center(
-                child: SizedBox(
-                  width: 200,
-                  child: ElevatedButton(
+                SizedBox(height: 16),
+
+                TextField(
+                  cursorColor: Colors.blue,
+                  controller: phoneController,
+                  decoration: InputDecoration(
+                    labelText: 'Phone Number',
+                    labelStyle: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  keyboardType: TextInputType.phone,
+                ),
+                SizedBox(height: 30),
+
+                Center(
+                  child: SizedBox(
+                    width: 200,
+                    child: ElevatedButton(
+                      onPressed: _searchDoctor,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(
+                                color: Colors.lightGreen.shade900, width: 2)),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.search,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            "Search",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: doctorList.length,
+                  itemBuilder: (context, index) {
+                    return _buildDoctorCard(
+                        doctorList[index], index + 1, context);
+                  },
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      floatingActionButton: _isScrolled
+          ? Align(
+              alignment: Alignment.bottomCenter, // Center the button
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Container(
+                  width: 250, // Increase the width as per your requirement
+                  child: FloatingActionButton(
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => AddDoctor()),
                       );
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange.shade400,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 10,
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
-                          side: BorderSide(width: 3, color: Colors.orange)),
-                    ),
+                    backgroundColor: Colors.orange.shade400,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
                         Icon(
-                          Icons.add_circle,
+                          Icons.add,
                           color: Colors.white,
-                          size: 20,
+                          size: 40,
                         ),
                         SizedBox(width: 8),
                         Text(
-                          "Add new Doctor",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
+                          'Add New Doctor',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        )
                       ],
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
+            )
+          : null,
     );
   }
 }
 
 // Helper method to build a doctor card
-Widget _buildDoctorCard(Map<String, String> doctorList, int index) {
+Widget _buildDoctorCard(Map<String, String> doctorList, int index, context) {
   return Card(
     elevation: 8,
     color: Colors.white,
@@ -322,7 +334,12 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index) {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddToMylistDr()),
+                  );
+                },
                 style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.grey,
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -346,12 +363,12 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index) {
               OutlinedButton(
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.blue[300],
+                  backgroundColor: Colors.blue,
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  side: BorderSide(color: Colors.blue, width: 3),
+                  //    side: BorderSide(color: Colors.blue, width: 3),
                 ),
                 child: Row(
                   children: [
