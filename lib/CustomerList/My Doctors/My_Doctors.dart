@@ -76,7 +76,7 @@ class _MyDoctorsState extends State<MyDoctors> {
                       cursorColor: Colors.blue,
                       controller: _searchController,
                       decoration: InputDecoration(
-                        hintText: 'Search Doctors...',
+                        hintText: 'Search Here',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
