@@ -137,7 +137,7 @@ class _AllCustomersState extends State<AllCustomers> {
                           });
                         },
                       ),
-                      SizedBox(width: 14),
+                      SizedBox(width: 12),
                       _buildTab(
                         "Distributers",
                         _selectedTab == "Distributers"
@@ -175,7 +175,7 @@ class _AllCustomersState extends State<AllCustomers> {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(20),
@@ -370,7 +370,7 @@ class _AllCustomersState extends State<AllCustomers> {
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 35),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -401,7 +401,7 @@ class _AllCustomersState extends State<AllCustomers> {
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.blue,
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

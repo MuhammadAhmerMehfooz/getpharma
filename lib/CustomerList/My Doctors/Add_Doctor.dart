@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:getpharma/CustomerList/All%20Customers/All_Customers.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AddDoctor extends StatefulWidget {
@@ -458,48 +460,50 @@ class _AddDoctorState extends State<AddDoctor> {
               ),
               SizedBox(height: 25),
               GestureDetector(
-                onTap:
-                    _pickImage, // Opens gallery when the container is clicked
-                child: Container(
-                  width: 400,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+                onTap: _pickImage,
+                child: DottedBorder(
+                  color: Colors.blue,
+                  strokeWidth: 2,
+                  borderType: BorderType.RRect,
+                  radius: const Radius.circular(10),
+                  dashPattern: const [6, 3],
+                  child: Container(
+                    width: 400,
+                    height: 150,
                     color: Colors.white,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            color: Colors.grey,
+                            size: 40,
+                          ),
                         ),
-                        child: const Icon(
-                          Icons.camera_alt,
-                          color: Colors.grey,
-                          size: 40,
+                        const SizedBox(height: 3),
+                        const Text(
+                          'Upload File',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.blue,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 3),
-                      const Text(
-                        'Upload File',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.blue,
+                        const SizedBox(height: 1),
+                        const Text(
+                          'Max file size: 25MB',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 1),
-                      const Text(
-                        'Max file size: 25MB',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -555,48 +559,50 @@ class _AddDoctorState extends State<AddDoctor> {
               ),
               SizedBox(height: 25),
               GestureDetector(
-                onTap:
-                    _pickImageforclinic, // Opens gallery when the container is clicked
-                child: Container(
-                  width: 400,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+                onTap: _pickImageforclinic,
+                child: DottedBorder(
+                  color: Colors.blue,
+                  strokeWidth: 2,
+                  borderType: BorderType.RRect,
+                  radius: const Radius.circular(10),
+                  dashPattern: const [6, 3],
+                  child: Container(
+                    width: 400,
+                    height: 150,
                     color: Colors.white,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: const Icon(
+                            Icons.camera_alt,
+                            color: Colors.grey,
+                            size: 40,
+                          ),
                         ),
-                        child: const Icon(
-                          Icons.camera_alt,
-                          color: Colors.grey,
-                          size: 40,
+                        const SizedBox(height: 3),
+                        const Text(
+                          'Upload File',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.blue,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 3),
-                      const Text(
-                        'Upload File',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.blue,
+                        const SizedBox(height: 1),
+                        const Text(
+                          'Max file size: 25MB',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 1),
-                      const Text(
-                        'Max file size: 25MB',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -646,7 +652,12 @@ class _AddDoctorState extends State<AddDoctor> {
               ),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AllCustomers()),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue, // Button color
                     padding: const EdgeInsets.symmetric(

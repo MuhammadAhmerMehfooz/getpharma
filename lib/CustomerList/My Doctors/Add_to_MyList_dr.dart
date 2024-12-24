@@ -83,7 +83,7 @@ class _AddToMylistDrState extends State<AddToMylistDr> {
               child: OutlinedButton.icon(
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: Colors.orange, width: 2),
-                  padding: EdgeInsets.symmetric(vertical: 18, horizontal: 100),
+                  padding: EdgeInsets.symmetric(vertical: 18, horizontal: 80),
                   shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.circular(8), // Reduced border radius

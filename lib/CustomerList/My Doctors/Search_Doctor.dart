@@ -364,7 +364,7 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index, context) {
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
