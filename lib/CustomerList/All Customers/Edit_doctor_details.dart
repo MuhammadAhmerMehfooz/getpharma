@@ -85,12 +85,22 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
               ),
               const SizedBox(height: 16),
+              Text(
+                'Name',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'Name',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -100,13 +110,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Phone Number',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'Phone Number',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -117,13 +139,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
                 keyboardType: TextInputType.phone,
               ),
-              SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'CNIC Number',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'CNIC Number',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -134,13 +168,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
                 keyboardType: TextInputType.number,
               ),
-              SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Gender',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               DropdownButtonFormField<String>(
                 value: selectedGender,
                 decoration: InputDecoration(
                   labelText: 'Gender',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -161,7 +207,7 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   });
                 },
               ),
-              SizedBox(height: 25),
+              SizedBox(height: 20),
               const Text(
                 'Professional Details',
                 style: TextStyle(
@@ -170,13 +216,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 25),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'PMDC Number',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'PMDC Number',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -186,13 +244,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Designation',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               DropdownButtonFormField<String>(
                 value: selectedGender,
                 decoration: InputDecoration(
                   labelText: 'Designation',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -213,13 +283,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   });
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Qualification',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'Qualification',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -229,13 +311,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Speciality',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               DropdownButtonFormField<String>(
                 value: selectedGender,
                 decoration: InputDecoration(
                   labelText: 'Speciality',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -256,7 +350,7 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   });
                 },
               ),
-              SizedBox(height: 25),
+              SizedBox(height: 20),
               const Text(
                 'Location Details',
                 style: TextStyle(
@@ -266,12 +360,22 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
               ),
               const SizedBox(height: 16),
+              Text(
+                'Name',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'Name',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -281,13 +385,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Brick',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               DropdownButtonFormField<String>(
                 value: selectedGender,
                 decoration: InputDecoration(
                   labelText: 'Brick',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -308,13 +424,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   });
                 },
               ),
-              const SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Address',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'Address',
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -324,7 +452,19 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Set up Location on Map',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
@@ -336,8 +476,8 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                     ),
                     onPressed: () {},
                   ),
-                  labelStyle: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -347,13 +487,25 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'City',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               DropdownButtonFormField<String>(
                 value: selectedGender,
                 decoration: InputDecoration(
                   labelText: 'City',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -381,7 +533,7 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   });
                 },
               ),
-              SizedBox(height: 25),
+              SizedBox(height: 20),
               const Text(
                 'Details',
                 style: TextStyle(
@@ -390,13 +542,23 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
+              Text(
+                'Class',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               DropdownButtonFormField<String>(
                 value: selectedclass,
                 decoration: InputDecoration(
                   labelText: 'Class',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -422,13 +584,23 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                   });
                 },
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
+              Text(
+                'Frequency',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               DropdownButtonFormField<String>(
                 value: selectedfrequency,
                 decoration: InputDecoration(
                   labelText: 'Frequency',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
+                  labelStyle:
+                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

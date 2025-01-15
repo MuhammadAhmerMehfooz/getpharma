@@ -75,14 +75,24 @@ class _SearchDoctorState extends State<SearchDoctor> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  'Name',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
                 // Name field
                 TextField(
                   cursorColor: Colors.blue,
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Name',
-                    labelStyle: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                    labelStyle:
+                        TextStyle(color: Colors.grey.shade900, fontSize: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -93,7 +103,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 2),
 
                 // Special Prescriber Checkbox
                 Row(
@@ -116,15 +126,28 @@ class _SearchDoctorState extends State<SearchDoctor> {
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
+                SizedBox(
+                  height: 8,
+                ),
+
+                Text(
+                  'CNIC Number',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
 
                 TextField(
                   cursorColor: Colors.blue,
                   controller: cnicController,
                   decoration: InputDecoration(
                     labelText: 'CNIC Number',
-                    labelStyle: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                    labelStyle:
+                        TextStyle(color: Colors.grey.shade900, fontSize: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -137,15 +160,25 @@ class _SearchDoctorState extends State<SearchDoctor> {
                   keyboardType: TextInputType.number,
                 ),
 
-                SizedBox(height: 16),
+                SizedBox(height: 10),
+                Text(
+                  'PMDC Number',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
 
                 TextField(
                   cursorColor: Colors.blue,
                   controller: pmdcController,
                   decoration: InputDecoration(
                     labelText: 'PMDC Number',
-                    labelStyle: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                    labelStyle:
+                        TextStyle(color: Colors.grey.shade900, fontSize: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -157,15 +190,25 @@ class _SearchDoctorState extends State<SearchDoctor> {
                   ),
                 ),
 
-                SizedBox(height: 16),
+                SizedBox(height: 10),
+                Text(
+                  'Phone Number',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
 
                 TextField(
                   cursorColor: Colors.blue,
                   controller: phoneController,
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
-                    labelStyle: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
+                    labelStyle:
+                        TextStyle(color: Colors.grey.shade900, fontSize: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -309,7 +352,8 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index, context) {
                       children: [
                         Text(
                           doctorList['id']!,
-                          style: TextStyle(color: Colors.blue),
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -320,7 +364,10 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index, context) {
                         fontSize: 16,
                       ),
                     ),
-                    Text(doctorList['specialty']!),
+                    Text(
+                      doctorList['specialty']!,
+                      style: TextStyle(color: Colors.grey),
+                    ),
                     Text(doctorList['contact']!),
                   ],
                 ),
@@ -341,20 +388,20 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index, context) {
                   );
                 },
                 style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.grey,
+                  backgroundColor: Colors.white,
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  side: BorderSide(color: Colors.black, width: 2),
+                  side: BorderSide(color: Colors.grey, width: 2),
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.details, color: Colors.white),
+                    Icon(Icons.details, color: Colors.grey),
                     SizedBox(width: 8),
                     Text(
                       "Details",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.grey),
                     ),
                   ],
                 ),
@@ -368,7 +415,7 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index, context) {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  //    side: BorderSide(color: Colors.blue, width: 3),
+                  side: BorderSide(color: Colors.blue, width: 2),
                 ),
                 child: Row(
                   children: [

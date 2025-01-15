@@ -169,8 +169,8 @@ class _RemoveDoctorState extends State<RemoveDoctor> {
                     // Add action for add to list here
                   },
                   style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.red[400],
-                    side: BorderSide(color: Colors.black, width: 2),
+                    backgroundColor: Colors.blue,
+                    side: BorderSide(color: Colors.blue, width: 2),
                     padding: EdgeInsets.symmetric(vertical: 12, horizontal: 60),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -197,7 +197,7 @@ class _RemoveDoctorState extends State<RemoveDoctor> {
     return Text(
       title,
       style: const TextStyle(
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -214,28 +214,36 @@ class _RemoveDoctorState extends State<RemoveDoctor> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: details.map((detail) {
+          children: List.generate(details.length, (index) {
+            final detail = details[index];
             final key = detail.keys.first;
             final value = detail.values.first;
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    key,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey),
+
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        key,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.grey),
+                      ),
+                      Text(
+                        value,
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w600),
+                      ),
+                    ],
                   ),
-                  Text(
-                    value,
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
+                ),
+                // Add a divider only if it's not the last item
+                if (index < details.length - 1) Divider(),
+              ],
             );
-          }).toList(),
+          }),
         ),
       ),
     );

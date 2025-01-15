@@ -78,10 +78,10 @@ class _AllCustomersState extends State<AllCustomers> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Colors.grey.shade300,
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        prefixIcon: Icon(Icons.search, color: Colors.blue),
+                        prefixIcon: Icon(Icons.search, color: Colors.grey),
                       ),
                     ),
                   ),
@@ -197,6 +197,8 @@ class _AllCustomersState extends State<AllCustomers> {
           child: TextField(
             cursorColor: Colors.blue,
             decoration: InputDecoration(
+              fillColor: Colors.white,
+              filled: true,
               labelText: 'City',
               labelStyle:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -215,6 +217,8 @@ class _AllCustomersState extends State<AllCustomers> {
           child: TextField(
             cursorColor: Colors.blue,
             decoration: InputDecoration(
+              fillColor: Colors.white,
+              filled: true,
               labelText: 'Qualification',
               labelStyle:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -234,6 +238,8 @@ class _AllCustomersState extends State<AllCustomers> {
             keyboardType: TextInputType.number,
             cursorColor: Colors.blue,
             decoration: InputDecoration(
+              fillColor: Colors.white,
+              filled: true,
               labelText: 'PMDC No',
               labelStyle:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -252,6 +258,8 @@ class _AllCustomersState extends State<AllCustomers> {
           child: TextField(
             cursorColor: Colors.blue,
             decoration: InputDecoration(
+              fillColor: Colors.white,
+              filled: true,
               labelText: 'Designation',
               labelStyle:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -326,12 +334,22 @@ class _AllCustomersState extends State<AllCustomers> {
                               fontSize: 16,
                             ),
                           ),
-                          Text(
-                            doctor['additionalInfo'] ??
-                                'N/A', // Handle null value
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.orange, // You can change the color
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.orange.shade100, // Background color
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              doctor['additionalInfo'] ??
+                                  'N/A', // Default value
+                              style: TextStyle(
+                                backgroundColor: Colors.orange.shade100,
+                                fontSize: 12,
+                                color: Colors.orange.shade900, // Text color
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ],
@@ -343,7 +361,10 @@ class _AllCustomersState extends State<AllCustomers> {
                           fontSize: 16,
                         ),
                       ),
-                      Text(doctor['specialty']!),
+                      Text(
+                        doctor['specialty']!,
+                        style: TextStyle(color: Colors.grey),
+                      ),
                       Text(doctor['contact']!),
                     ],
                   ),
@@ -370,11 +391,11 @@ class _AllCustomersState extends State<AllCustomers> {
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 35),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    side: BorderSide(color: Colors.black, width: 2),
+                    side: BorderSide(color: Colors.grey, width: 2),
                   ),
                   child: Row(
                     children: [
@@ -405,7 +426,7 @@ class _AllCustomersState extends State<AllCustomers> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    side: BorderSide(color: Colors.black, width: 2),
+                    side: BorderSide(color: Colors.blue, width: 2),
                   ),
                   child: Row(
                     children: [

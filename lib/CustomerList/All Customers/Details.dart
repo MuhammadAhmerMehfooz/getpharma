@@ -148,7 +148,7 @@ class _DetailsState extends State<Details> {
     return Text(
       title,
       style: const TextStyle(
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -165,28 +165,36 @@ class _DetailsState extends State<Details> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: details.map((detail) {
+          children: List.generate(details.length, (index) {
+            final detail = details[index];
             final key = detail.keys.first;
             final value = detail.values.first;
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    key,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey),
+
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        key,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.grey),
+                      ),
+                      Text(
+                        value,
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w600),
+                      ),
+                    ],
                   ),
-                  Text(
-                    value,
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
+                ),
+                // Add a divider only if it's not the last item
+                if (index < details.length - 1) Divider(),
+              ],
             );
-          }).toList(),
+          }),
         ),
       ),
     );

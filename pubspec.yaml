@@ -36,6 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   image_picker: ^1.1.2
   dotted_border: ^2.1.0
+  table_calendar: ^3.0.2
+  intl: ^0.18.0
+  percent_indicator: ^4.2.2
+  fl_chart: ^0.70.1
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +75,7 @@ flutter:
     - assets/images/clicnic2.jpg
     - assets/images/clicnic3.jpg
     - assets/images/clicnic4.jpg
+    - assets/images/man.jpg
 
 
    

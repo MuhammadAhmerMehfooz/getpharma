@@ -86,10 +86,10 @@ class _MyDoctorsState extends State<MyDoctors> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Colors.grey.shade300,
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                        prefixIcon: Icon(Icons.search, color: Colors.blue),
+                        prefixIcon: Icon(Icons.search, color: Colors.grey),
                       ),
                     ),
                   ),
@@ -111,66 +111,88 @@ class _MyDoctorsState extends State<MyDoctors> {
 
             // Tabs for "My List" and "My Requests"
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              padding: const EdgeInsets.all(10.0),
+              child: GridView.count(
+                shrinkWrap: true, // Ensures it doesn't take infinite height
+                physics: NeverScrollableScrollPhysics(), // Prevent inner scroll
+                crossAxisCount: 2, // Number of columns
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 3, // Adjusts the height of the grid items
                 children: [
-                  Row(
-                    children: [
-                      _buildTab(
-                        "My List",
-                        _selectedTab == "My List"
-                            ? Colors.blue
-                            : Colors.grey[200]!,
-                        _selectedTab == "My List" ? Colors.white : Colors.black,
-                        () {
-                          setState(() {
-                            _selectedTab = "My List";
-                            _isRequestSelected = false;
-                            _isPendingApproval = false;
-                          });
-                        },
-                      ),
-                      SizedBox(width: 20),
-                      _buildTab(
-                        "My Requests",
-                        _selectedTab == "My Requests"
-                            ? Colors.blue
-                            : Colors.grey[200]!,
-                        _selectedTab == "My Requests"
-                            ? Colors.white
-                            : Colors.black,
-                        () {
-                          setState(() {
-                            _selectedTab = "My Requests";
-                            _isRequestSelected = true;
-                            _isPendingApproval = false;
-                          });
-                        },
-                      ),
-                    ],
+                  _buildTab(
+                    "My List",
+                    _selectedTab == "My List" ? Colors.blue : Colors.grey[200]!,
+                    _selectedTab == "My List"
+                        ? Colors.white
+                        : Colors.grey.shade800,
+                    () {
+                      setState(() {
+                        _selectedTab = "My List";
+                        _isRequestSelected = false;
+                        _isPendingApproval = false;
+                      });
+                    },
+                    120,
+                    _selectedTab == "My List",
+                  ),
+                  _buildTab(
+                    "My Requests",
+                    _selectedTab == "My Requests"
+                        ? Colors.blue
+                        : Colors.grey[200]!,
+                    _selectedTab == "My Requests"
+                        ? Colors.white
+                        : Colors.grey.shade800,
+                    () {
+                      setState(() {
+                        _selectedTab = "My Requests";
+                        _isRequestSelected = true;
+                        _isPendingApproval = false;
+                      });
+                    },
+                    12,
+                    _selectedTab == "My Requests",
+                  ),
+                  _buildTab(
+                    "Pending For My Approval",
+                    _selectedTab == "Pending For My Approval"
+                        ? Colors.blue
+                        : Colors.grey[200]!,
+                    _selectedTab == "Pending For My Approval"
+                        ? Colors.white
+                        : Colors.grey.shade800,
+                    () {
+                      setState(() {
+                        _selectedTab = "Pending For My Approval";
+                        _isRequestSelected = false;
+                        _isPendingApproval = true;
+                      });
+                    },
+                    12,
+                    _selectedTab == "Pending For My Approval",
                   ),
                 ],
               ),
             ),
 
-            SizedBox(height: 12),
-            _buildTab(
-              "Pending For My Approval",
-              _selectedTab == "Pending For My Approval"
-                  ? Colors.blue
-                  : Colors.grey[200]!,
-              _selectedTab == "Pending For My Approval"
-                  ? Colors.white
-                  : Colors.black,
-              () {
-                setState(() {
-                  _selectedTab = "Pending For My Approval";
-                  _isRequestSelected = false;
-                  _isPendingApproval = true;
-                });
-              },
-            ),
+            // SizedBox(height: 12),
+            // _buildTab(
+            //   "Pending For My Approval",
+            //   _selectedTab == "Pending For My Approval"
+            //       ? Colors.blue
+            //       : Colors.grey[200]!,
+            //   _selectedTab == "Pending For My Approval"
+            //       ? Colors.white
+            //       : Colors.black,
+            //   () {
+            //     setState(() {
+            //       _selectedTab = "Pending For My Approval";
+            //       _isRequestSelected = false;
+            //       _isPendingApproval = true;
+            //     });
+            //   },
+            // ),
             SizedBox(
               height: 10,
             ),
@@ -398,20 +420,50 @@ class _MyDoctorsState extends State<MyDoctors> {
 
   /////////////////////////////////////// BUILDS CARDS /////////////////////////////////////////////////////////////
 
-  Widget _buildTab(
-      String title, Color bgColor, Color textColor, Function onTap) {
+  Widget _buildTab(String title, Color bgColor, Color textColor, Function onTap,
+      int count, bool isSelected) {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
         ),
-        child: Text(
-          title,
-          style: TextStyle(
-              color: textColor, fontWeight: FontWeight.bold, fontSize: 16),
+        child: Row(
+          mainAxisSize: MainAxisSize.min, // Adjusts to content size
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 20, // Size of the avatar
+              backgroundColor: isSelected
+                  ? Colors.blue.shade700
+                  : Colors.blue.shade50, // Background color of the avatar
+              child: Text(
+                '$count', // Display the count
+                style: TextStyle(
+                  color: isSelected
+                      ? Colors.white
+                      : Colors.black, // Matches the background color of the tab
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            SizedBox(width: 10), // Space between the CircleAvatar and text
+            Flexible(
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 13,
+                ),
+                overflow: TextOverflow.visible, // Allow text to wrap
+                softWrap: true, // Enable wrapping
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -494,16 +546,26 @@ class _MyDoctorsState extends State<MyDoctors> {
                           Text(
                             "No. $index",
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.grey),
                           ),
-                          Text(
-                            doctor['additionalInfo'] ??
-                                'N/A', // Handle null value
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.orange, // You can change the color
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.orange.shade100, // Background color
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              doctor['additionalInfo'] ??
+                                  'N/A', // Default value
+                              style: TextStyle(
+                                backgroundColor: Colors.orange.shade100,
+                                fontSize: 12,
+                                color: Colors.orange.shade900, // Text color
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ],
@@ -515,7 +577,10 @@ class _MyDoctorsState extends State<MyDoctors> {
                           fontSize: 16,
                         ),
                       ),
-                      Text(doctor['specialty']!),
+                      Text(
+                        doctor['specialty']!,
+                        style: TextStyle(color: Colors.grey),
+                      ),
                       Text(doctor['contact']!),
                     ],
                   ),
@@ -541,24 +606,24 @@ class _MyDoctorsState extends State<MyDoctors> {
                     );
                   },
                   style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.red[400],
+                    backgroundColor: Colors.white,
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    side: BorderSide(color: Colors.black, width: 2),
+                    side: BorderSide(color: Colors.red, width: 2),
                   ),
                   child: Row(
                     children: [
                       Icon(
                         Icons.remove, // Icon for the "Remove" button
-                        color: Colors.white,
+                        color: Colors.red,
                       ),
                       SizedBox(
                           width: 8), // Spacing between the icon and the text
                       Text(
                         "Remove",
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.red),
                       ),
                     ],
                   ),
@@ -567,12 +632,12 @@ class _MyDoctorsState extends State<MyDoctors> {
                 OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
-                    backgroundColor: Colors.green[900],
+                    backgroundColor: Colors.teal[800],
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    side: BorderSide(color: Colors.black, width: 2),
+                    side: BorderSide(color: Colors.teal.shade800, width: 2),
                   ),
                   child: Row(
                     children: [
@@ -632,9 +697,9 @@ class _MyDoctorsState extends State<MyDoctors> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "No. $index",
+                            doctor['name']!,
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               fontSize: 16,
                             ),
                           ),
@@ -649,7 +714,7 @@ class _MyDoctorsState extends State<MyDoctors> {
                             child: Text(
                               'Pending', // Handle null value
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 color: Colors
                                     .orange[900], // You can change the color
                               ),
@@ -658,13 +723,13 @@ class _MyDoctorsState extends State<MyDoctors> {
                         ],
                       ),
                       Text(
-                        doctor['name']!,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ),
+                        doctor['id']!,
+                        style: TextStyle(color: Colors.grey),
                       ),
-                      Text(doctor['specialty']!),
+                      Text(
+                        doctor['specialty']!,
+                        style: TextStyle(color: Colors.grey),
+                      ),
                       Text(doctor['contact']!),
                     ],
                   ),
@@ -775,9 +840,9 @@ class _MyDoctorsState extends State<MyDoctors> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "No. $index",
+                            doctor['name']!,
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               fontSize: 16,
                             ),
                           ),
@@ -821,13 +886,13 @@ class _MyDoctorsState extends State<MyDoctors> {
                         ],
                       ),
                       Text(
-                        doctor['name']!,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        ),
+                        doctor['id']!,
+                        style: TextStyle(color: Colors.grey),
                       ),
-                      Text(doctor['specialty']!),
+                      Text(
+                        doctor['specialty']!,
+                        style: TextStyle(color: Colors.grey),
+                      ),
                       Text(doctor['contact']!),
                     ],
                   ),
