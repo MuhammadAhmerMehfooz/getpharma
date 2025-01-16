@@ -11,7 +11,7 @@ class WorkPlan extends StatefulWidget {
 
 class _WorkPlanState extends State<WorkPlan> {
   int selectedIndex = 0;
-  bool isTsmLogin = false; // Hardcoded for demo; set it to false for DSM login
+  bool isTsmLogin = true; // Hardcoded for demo; set it to false for DSM login
   late DateTime selectedDay;
   late DateTime focusedDay;
   String? selectedButton;
@@ -249,9 +249,12 @@ class _WorkPlanState extends State<WorkPlan> {
                         backgroundColor: selectedButton == 'Save Plan'
                             ? Colors.blue
                             : Colors.white70,
-                        side: BorderSide(color: Colors.black, width: 2),
+                        side: BorderSide(
+                          color: Colors.black,
+                          width: 2,
+                        ),
                         padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 40),
+                            EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -284,7 +287,7 @@ class _WorkPlanState extends State<WorkPlan> {
                             : Colors.white70,
                         side: BorderSide(color: Colors.black, width: 2),
                         padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 40),
+                            EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -314,17 +317,18 @@ class _WorkPlanState extends State<WorkPlan> {
 
   List<Widget> _buildPrimaryTabs() {
     return [
-      _buildTab(0, "My Work Plan"),
+      Expanded(child: _buildTab(0, "My Work Plan")),
       const SizedBox(width: 10),
-      _buildTab(1, "Rework Required", badgeCount: 3),
+      Expanded(child: _buildTab(1, "Rework Required", badgeCount: 3)),
     ];
   }
 
   List<Widget> _buildAdditionalTabs() {
     return [
-      _buildMoreTabs(2, "Pending For my Approval", badgeCount: 4),
+      Expanded(
+          child: _buildMoreTabs(2, "Pending For my Approval", badgeCount: 4)),
       const SizedBox(width: 10),
-      _buildMoreTabs(3, "My Teams Work Plan", badgeCount: 12),
+      Expanded(child: _buildMoreTabs(3, "My Teams Work Plan", badgeCount: 12)),
     ];
   }
 
@@ -417,8 +421,7 @@ class _WorkPlanState extends State<WorkPlan> {
         });
       },
       child: Container(
-        width: 170, // Set a fixed width for the container
-        height: 60, // Set the same height for the container
+        height: 80, // Set the same height for the container
         decoration: BoxDecoration(
           color: isSelected ? Colors.blue : Colors.white,
           borderRadius: BorderRadius.circular(14),
@@ -1115,66 +1118,70 @@ class _WorkPlanState extends State<WorkPlan> {
   }
 
   Widget _MyWorkplan() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TableCalendar(
-            focusedDay: focusedDay,
-            firstDay: DateTime.utc(2020, 10, 16),
-            lastDay: DateTime.utc(2030, 3, 14),
-            selectedDayPredicate: (day) {
-              return isSameDay(selectedDay, day);
-            },
-            onDaySelected: (selectedDay, focusedDay) {
-              setState(() {
-                this.selectedDay = selectedDay;
-                this.focusedDay = focusedDay;
-              });
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MiniEvent(selectedDate: selectedDay),
-                ),
-              );
-            },
-            calendarStyle: CalendarStyle(
-              todayDecoration: BoxDecoration(
-                color: Colors.blue,
-                shape: BoxShape.circle,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TableCalendar(
+          focusedDay: focusedDay,
+          firstDay: DateTime.utc(2020, 10, 16),
+          lastDay: DateTime.utc(2030, 3, 14),
+          selectedDayPredicate: (day) {
+            return isSameDay(selectedDay, day);
+          },
+          onDaySelected: (selectedDay, focusedDay) {
+            setState(() {
+              this.selectedDay = selectedDay;
+              this.focusedDay = focusedDay;
+            });
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MiniEvent(selectedDate: selectedDay),
               ),
-              selectedDecoration: BoxDecoration(
-                color: Colors.blue,
-                shape: BoxShape.circle,
-              ),
-              weekendTextStyle: TextStyle(color: Colors.black),
-              defaultTextStyle: TextStyle(color: Colors.black),
+            );
+          },
+          calendarStyle: CalendarStyle(
+            todayDecoration: BoxDecoration(
+              color: Colors.blue,
+              shape: BoxShape.circle,
             ),
-            headerStyle: HeaderStyle(
-              titleTextStyle: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-              formatButtonTextStyle: TextStyle(color: Colors.black),
-              formatButtonDecoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(6),
-              ),
-              formatButtonVisible: false,
-              titleCentered: true,
+            selectedDecoration: BoxDecoration(
+              color: Colors.blue,
+              shape: BoxShape.circle,
             ),
-            daysOfWeekStyle: DaysOfWeekStyle(
-              weekdayStyle:
-                  TextStyle(color: Colors.black), // Text color for weekdays
-              weekendStyle:
-                  TextStyle(color: Colors.black), // Text color for weekend days
-            ),
+            weekendTextStyle: TextStyle(color: Colors.black),
+            defaultTextStyle: TextStyle(color: Colors.black),
           ),
-          const SizedBox(height: 16.0),
-          if (isTsmLogin)
-            Text(
+          headerStyle: HeaderStyle(
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+            formatButtonTextStyle: TextStyle(color: Colors.black),
+            formatButtonDecoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(6),
+            ),
+            formatButtonVisible: false,
+            titleCentered: true,
+          ),
+          daysOfWeekStyle: DaysOfWeekStyle(
+            decoration: const BoxDecoration(
+              color: Colors.blue,
+            ),
+            weekdayStyle:
+                TextStyle(color: Colors.white), // Text color for weekdays
+            weekendStyle:
+                TextStyle(color: Colors.white), // Text color for weekend days
+          ),
+          daysOfWeekHeight: 30,
+        ),
+        const SizedBox(height: 16.0),
+        if (isTsmLogin)
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
               "Plan Calibration",
               style: TextStyle(
                 fontSize: 18,
@@ -1182,9 +1189,12 @@ class _WorkPlanState extends State<WorkPlan> {
                 color: Colors.black,
               ),
             ),
-          if (isTsmLogin) const SizedBox(height: 16.0),
-          if (isTsmLogin)
-            Row(
+          ),
+        if (isTsmLogin) const SizedBox(height: 16.0),
+        if (isTsmLogin)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
@@ -1261,9 +1271,12 @@ class _WorkPlanState extends State<WorkPlan> {
                 ),
               ],
             ),
-          const SizedBox(height: 10.0),
-          if (isTsmLogin)
-            Row(
+          ),
+        const SizedBox(height: 10.0),
+        if (isTsmLogin)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
               mainAxisAlignment:
                   MainAxisAlignment.spaceBetween, // Evenly space cards
               children: [
@@ -1338,8 +1351,8 @@ class _WorkPlanState extends State<WorkPlan> {
                 ),
               ],
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 
