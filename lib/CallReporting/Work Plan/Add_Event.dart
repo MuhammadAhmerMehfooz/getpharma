@@ -13,7 +13,7 @@ class AddEvent extends StatefulWidget {
 class _AddEventState extends State<AddEvent> {
   @override
   Widget build(BuildContext context) {
-    String? _selectedTime;
+    String? _selectedTime = "Morning";
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: buildAppBar(context),
@@ -275,10 +275,12 @@ class _AddEventState extends State<AddEvent> {
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
                               color: _selectedTime == "Morning"
-                                  ? Colors.blue
+                                  ? Colors.orangeAccent
                                   : Colors.white,
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: Colors.blue),
+                              border: _selectedTime == "Morning"
+                                  ? Border.all(color: Colors.orange)
+                                  : Border.all(color: Colors.white),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -287,7 +289,7 @@ class _AddEventState extends State<AddEvent> {
                                   Icons.wb_sunny_outlined,
                                   size: 18,
                                   color: _selectedTime == "Morning"
-                                      ? Colors.white
+                                      ? Colors.deepOrange.shade900
                                       : Colors.black,
                                 ),
                                 const SizedBox(width: 8),
@@ -296,7 +298,7 @@ class _AddEventState extends State<AddEvent> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: _selectedTime == "Morning"
-                                        ? Colors.white
+                                        ? Colors.deepOrange.shade900
                                         : Colors.black,
                                   ),
                                 ),
@@ -357,29 +359,39 @@ class _AddEventState extends State<AddEvent> {
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                        fontSize: 16),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 16,
                   ),
-                  TextField(
-                    cursorColor: Colors.blue,
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                      labelStyle: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(
+                          10), // Match TextField border radius
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          blurRadius: 3,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                    ),
+                    padding: EdgeInsets.all(8),
+                    child: TextField(
+                      cursorColor: Colors.blue,
+                      maxLines: 5,
+                      decoration: InputDecoration(
+                        labelStyle: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        border: InputBorder.none,
+                        alignLabelWithHint: true,
+                        hintText: 'Enter a description...',
+                        filled: true,
+                        fillColor: Colors.white,
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.blue, width: 2),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      alignLabelWithHint: true,
-                      hintText: 'Enter a detailed description...',
                     ),
                   ),
                   SizedBox(
