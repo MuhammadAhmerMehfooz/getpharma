@@ -11,7 +11,7 @@ class WorkPlan extends StatefulWidget {
 
 class _WorkPlanState extends State<WorkPlan> {
   int selectedIndex = 0;
-  bool isTsmLogin = true; // Hardcoded for demo; set it to false for DSM login
+  bool isTsmLogin = false; // Hardcoded for demo; set it to false for DSM login
   late DateTime selectedDay;
   late DateTime focusedDay;
   String? selectedButton;
@@ -326,7 +326,7 @@ class _WorkPlanState extends State<WorkPlan> {
   List<Widget> _buildAdditionalTabs() {
     return [
       Expanded(
-          child: _buildMoreTabs(2, "Pending For my Approval", badgeCount: 4)),
+          child: _buildMoreTabs(2, "Pending For My Approval", badgeCount: 4)),
       const SizedBox(width: 10),
       Expanded(child: _buildMoreTabs(3, "My Teams Work Plan", badgeCount: 12)),
     ];
@@ -421,7 +421,8 @@ class _WorkPlanState extends State<WorkPlan> {
         });
       },
       child: Container(
-        height: 80, // Set the same height for the container
+        height: 60, // Set the same height for the container
+        width: 170,
         decoration: BoxDecoration(
           color: isSelected ? Colors.blue : Colors.white,
           borderRadius: BorderRadius.circular(14),
@@ -834,7 +835,7 @@ class _WorkPlanState extends State<WorkPlan> {
                   color: Colors.blue,
                   shape: BoxShape.circle,
                 ),
-                weekendTextStyle: TextStyle(color: Colors.red),
+                weekendTextStyle: TextStyle(color: Colors.black),
                 defaultTextStyle: TextStyle(color: Colors.black),
               ),
               headerStyle: HeaderStyle(
@@ -851,6 +852,16 @@ class _WorkPlanState extends State<WorkPlan> {
                 formatButtonVisible: false,
                 titleCentered: true,
               ),
+              daysOfWeekStyle: DaysOfWeekStyle(
+                decoration: const BoxDecoration(
+                  color: Colors.blue,
+                ),
+                weekdayStyle:
+                    TextStyle(color: Colors.white), // Text color for weekdays
+                weekendStyle: TextStyle(
+                    color: Colors.white), // Text color for weekend days
+              ),
+              daysOfWeekHeight: 30,
             ),
             const SizedBox(height: 16.0),
             Text(
@@ -1466,6 +1477,16 @@ class _WorkPlanState extends State<WorkPlan> {
                     formatButtonVisible: false,
                     titleCentered: true,
                   ),
+                  daysOfWeekStyle: DaysOfWeekStyle(
+                    decoration: const BoxDecoration(
+                      color: Colors.blue,
+                    ),
+                    weekdayStyle: TextStyle(
+                        color: Colors.white), // Text color for weekdays
+                    weekendStyle: TextStyle(
+                        color: Colors.white), // Text color for weekend days
+                  ),
+                  daysOfWeekHeight: 30,
                 ),
                 const SizedBox(
                     height: 16.0), // Spacing between calendar and text
@@ -2011,7 +2032,7 @@ class _WorkPlanState extends State<WorkPlan> {
                   color: Colors.blue,
                   shape: BoxShape.circle,
                 ),
-                weekendTextStyle: TextStyle(color: Colors.red),
+                weekendTextStyle: TextStyle(color: Colors.black),
                 defaultTextStyle: TextStyle(color: Colors.black),
               ),
               headerStyle: HeaderStyle(
@@ -2028,6 +2049,16 @@ class _WorkPlanState extends State<WorkPlan> {
                 formatButtonVisible: false,
                 titleCentered: true,
               ),
+              daysOfWeekStyle: DaysOfWeekStyle(
+                decoration: const BoxDecoration(
+                  color: Colors.blue,
+                ),
+                weekdayStyle:
+                    TextStyle(color: Colors.white), // Text color for weekdays
+                weekendStyle: TextStyle(
+                    color: Colors.white), // Text color for weekend days
+              ),
+              daysOfWeekHeight: 30,
             ),
             const SizedBox(height: 16.0),
             Text(

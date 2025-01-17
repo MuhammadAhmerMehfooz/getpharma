@@ -11,6 +11,7 @@ class Settlements extends StatefulWidget {
 class _SettlementsState extends State<Settlements> {
   String _selectedTab = "Settlements";
   bool _isSettlements = false;
+  String _selectedsubTabs = '';
 
   List<Map<String, String>> data = [
     {
@@ -189,42 +190,50 @@ class _SettlementsState extends State<Settlements> {
   }
 
   Widget _buildReimbursementTabs() {
-    return Row(
-      children: [
-        const SizedBox(width: 30),
-        _buildTabForReimbursements(
-          "Pending",
-          _selectedTab == "Pending" ? Colors.blue : Colors.grey[200]!,
-          _selectedTab == "Pending" ? Colors.white : Colors.black,
-          () {
-            setState(() {
-              _selectedTab = "Pending";
-            });
-          },
-        ),
-        const SizedBox(width: 30),
-        _buildTabForReimbursements(
-          "Approved",
-          _selectedTab == "Approved" ? Colors.blue : Colors.grey[200]!,
-          _selectedTab == "Approved" ? Colors.white : Colors.black,
-          () {
-            setState(() {
-              _selectedTab = "Approved";
-            });
-          },
-        ),
-        const SizedBox(width: 30),
-        _buildTabForReimbursements(
-          "Rejected",
-          _selectedTab == "Rejected" ? Colors.blue : Colors.grey[200]!,
-          _selectedTab == "Rejected" ? Colors.white : Colors.black,
-          () {
-            setState(() {
-              _selectedTab = "Rejected";
-            });
-          },
-        ),
-      ],
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white, // Background color for the container
+        borderRadius:
+            BorderRadius.circular(30), // Rounded corners for the container
+      ),
+      child: Row(
+        mainAxisAlignment:
+            MainAxisAlignment.spaceEvenly, // Evenly space the tabs
+        children: [
+          _buildTabForReimbursements(
+            "Pending",
+            _selectedsubTabs == "Pending" ? Colors.blue : Colors.white,
+            _selectedsubTabs == "Pending" ? Colors.white : Colors.black,
+            () {
+              setState(() {
+                _selectedsubTabs = "Pending";
+              });
+            },
+          ),
+          _buildTabForReimbursements(
+            "Approved",
+            _selectedsubTabs == "Approved" ? Colors.blue : Colors.white,
+            _selectedsubTabs == "Approved" ? Colors.white : Colors.black,
+            () {
+              setState(() {
+                _selectedsubTabs = "Approved";
+              });
+            },
+          ),
+          _buildTabForReimbursements(
+            "Rejected",
+            _selectedsubTabs == "Rejected" ? Colors.blue : Colors.white,
+            _selectedsubTabs == "Rejected" ? Colors.white : Colors.black,
+            () {
+              setState(() {
+                _selectedsubTabs = "Rejected";
+              });
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -533,12 +542,11 @@ class _SettlementsState extends State<Settlements> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Text(
           title,
-          style: TextStyle(
-              color: textColor, fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(color: textColor, fontSize: 14),
         ),
       ),
     );
