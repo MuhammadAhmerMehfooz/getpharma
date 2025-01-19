@@ -10,12 +10,16 @@ class Advances extends StatefulWidget {
 }
 
 class _AdvancesState extends State<Advances> {
-  String _selectedTab = "Advances";
+  String _selectedTab = "My Advance Request";
   String _selectedsubTabs = '';
   bool _isAdvances = true;
+  bool showCheckBox = false;
+  bool isAllSelected = false;
+  Map<int, bool> selectedItems = {};
 
   List<Map<String, String>> data = [
     {
+      'id': '1',
       'title': 'Selling Expenses',
       'status': 'Pending',
       'update': 'Read',
@@ -27,6 +31,7 @@ class _AdvancesState extends State<Advances> {
       'approvalDate': '09 Sep 2024 - 08:25PM'
     },
     {
+      'id': '2',
       'title': 'Travel Expenses',
       'status': 'Pending',
       'update': 'Unread',
@@ -38,6 +43,7 @@ class _AdvancesState extends State<Advances> {
       'approvalDate': '12 Sep 2024 - 09:30AM'
     },
     {
+      'id': '3',
       'title': 'Office Supplies',
       'status': 'Pending',
       'update': 'Read',
@@ -49,6 +55,7 @@ class _AdvancesState extends State<Advances> {
       'approvalDate': '13 Sep 2024 - 10:15AM'
     },
     {
+      'id': '4',
       'title': 'Office Supplies',
       'status': 'Pending',
       'update': 'Read',
@@ -59,8 +66,41 @@ class _AdvancesState extends State<Advances> {
       'lastApproval': 'SM - Asim Ali',
       'approvalDate': '13 Sep 2024 - 10:15AM'
     },
-    // Add more cards as needed
   ];
+
+  void initializeSelectedItems() {
+    print("initializeSelectedItems");
+    for (var item in data) {
+      if (item['id'] != null) {
+        selectedItems[int.parse(item['id']!)] = false;
+      }
+    }
+  }
+
+  void toggleAllSelection(bool? value) {
+    setState(() {
+      isAllSelected = value ?? false;
+      for (var item in data) {
+        selectedItems[int.parse(item['id']!)] = isAllSelected;
+      }
+    });
+  }
+
+  void toggleCardSelection(int id, bool? value) {
+    print('toggle card hoa hai !!!!!!!!!!!!!!!!!!!!!!!!!!');
+    setState(() {
+      selectedItems[id] = value ?? false;
+      isAllSelected = selectedItems.length == data.length &&
+          selectedItems.values.every((isSelected) => isSelected);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initializeSelectedItems();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,26 +129,101 @@ class _AdvancesState extends State<Advances> {
             const SizedBox(height: 14),
             // Main Tabs
             _buildMainTabs(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
             if (_isAdvances) _buildReimbursementTabs(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
             _buildReimbursementCards(),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => (AdvancesRequest())),
-          );
-        },
-        backgroundColor: Colors.blue,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-      ),
+      floatingActionButton: _selectedTab == "My Advance Request"
+          ? FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => (AdvancesRequest())),
+                );
+              },
+              backgroundColor: Colors.blue,
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            )
+          : null,
+      bottomNavigationBar: showCheckBox
+          ? Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4,
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          right: 8), // Adds gap between buttons
+                      child: OutlinedButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: Colors.white70,
+                          side: const BorderSide(color: Colors.black, width: 2),
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: Text(
+                          'Reject',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 8), // Adds gap between buttons
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: Text(
+                          'Approve',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          : null,
     );
   }
 
@@ -149,39 +264,42 @@ class _AdvancesState extends State<Advances> {
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         children: [
-          _buildTab(
-            "My Advance Request",
-            _selectedTab == "My Advance Request"
-                ? Colors.blue
-                : Colors.grey[200]!,
-            _selectedTab == "My Advance Request" ? Colors.white : Colors.black,
-            () {
-              setState(() {
-                _selectedTab = "My Advance Request";
-                _isAdvances = true;
-              });
-            },
-            badgeCount: 4, // Example badgeCount
-            isSelected: _selectedTab == "My Advance Request", // Pass isSelected
+          Expanded(
+            child: _buildTab(
+              "My Advance Request",
+              _selectedTab == "My Advance Request"
+                  ? Colors.blue
+                  : Colors.grey[200]!,
+              _selectedTab == "My Advance Request"
+                  ? Colors.white
+                  : Colors.black,
+              () {
+                setState(() {
+                  _selectedTab = "My Advance Request";
+                  _isAdvances = true;
+                });
+              },
+              badgeCount: 4, // Example badgeCount
+            ),
           ),
-          const SizedBox(width: 15),
-          _buildTab(
-            "Pending For My Approval",
-            _selectedTab == "Pending For My Approval"
-                ? Colors.blue
-                : Colors.grey[200]!,
-            _selectedTab == "Pending For My Approval"
-                ? Colors.white
-                : Colors.black,
-            () {
-              setState(() {
-                _selectedTab = "Pending For My Approval";
-                _isAdvances = false;
-              });
-            },
-            badgeCount: 12, // Example badgeCount
-            isSelected:
-                _selectedTab == "Pending For My Approval", // Pass isSelected
+          const SizedBox(width: 8), // Adjust spacing as needed
+          Expanded(
+            child: _buildTab(
+              "Pending For My Approval",
+              _selectedTab == "Pending For My Approval"
+                  ? Colors.blue
+                  : Colors.grey[200]!,
+              _selectedTab == "Pending For My Approval"
+                  ? Colors.white
+                  : Colors.black,
+              () {
+                setState(() {
+                  _selectedTab = "Pending For My Approval";
+                  _isAdvances = false;
+                });
+              },
+              badgeCount: 12, // Example badgeCount
+            ),
           ),
         ],
       ),
@@ -191,8 +309,40 @@ class _AdvancesState extends State<Advances> {
   Widget _buildReimbursementCards() {
     if (_selectedTab == "Pending For My Approval") {
       return Column(
-        children:
-            data.map((item) => _buildPendingCardforapproval(item)).toList(),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              children: [
+                if (showCheckBox)
+                  Checkbox(
+                    value: isAllSelected,
+                    activeColor: Colors.blue,
+                    onChanged: toggleAllSelection,
+                  ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      showCheckBox = !showCheckBox;
+                    });
+                  },
+                  child: Text(
+                    "Select",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            children:
+                data.map((item) => _buildPendingCardforapproval(item)).toList(),
+          ),
+        ],
       );
     }
     if (!_isAdvances) {
@@ -206,7 +356,7 @@ class _AdvancesState extends State<Advances> {
 
   Widget _buildReimbursementTabs() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white, // Background color for the container
@@ -395,89 +545,119 @@ class _AdvancesState extends State<Advances> {
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-          child: Column(
+          padding: EdgeInsets.only(
+              left: showCheckBox ? 0.0 : 8.0,
+              top: 10.0,
+              bottom: 10.0,
+              right: 8.0),
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    item['title'] ?? 'Title',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.orange.shade100, // Background color
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text(
-                          item['status'] ?? 'Pending',
+              if (showCheckBox)
+                Checkbox(
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  activeColor: Colors.blue,
+                  visualDensity: VisualDensity.compact,
+                  value: (item['id'] != null &&
+                          selectedItems[int.parse(item['id']!)] != null)
+                      ? selectedItems[int.parse(item['id']!)]
+                      : false,
+                  onChanged: (bool? value) {
+                    if (item['id'] != null) {
+                      toggleCardSelection(int.parse(item['id']!), value);
+                    }
+                  },
+                ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          item['title'] ?? 'Title',
                           style: TextStyle(
-                            backgroundColor: Colors.orange.shade100,
-                            fontSize: 12,
-                            color: Colors.orange.shade900, // Text color
-                            fontWeight: FontWeight.w500,
-                          ),
+                              fontWeight: FontWeight.bold, fontSize: 14),
                         ),
-                      ),
-                      const SizedBox(width: 5),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.green.shade100, // Background color
-                          borderRadius: BorderRadius.circular(12),
+                        Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
+                              decoration: BoxDecoration(
+                                color:
+                                    Colors.orange.shade100, // Background color
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                item['status'] ?? 'Pending',
+                                style: TextStyle(
+                                  backgroundColor: Colors.orange.shade100,
+                                  fontSize: 12,
+                                  color: Colors.orange.shade900, // Text color
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 4),
+                              decoration: BoxDecoration(
+                                color:
+                                    Colors.green.shade100, // Background color
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                item['update'] ?? 'Read',
+                                style: TextStyle(
+                                  backgroundColor: Colors.green.shade100,
+                                  fontSize: 12,
+                                  color: Colors.green.shade800, // Text color
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        child: Text(
-                          item['update'] ?? 'Read',
-                          style: TextStyle(
-                            backgroundColor: Colors.green.shade100,
-                            fontSize: 12,
-                            color: Colors.green.shade800, // Text color
-                            fontWeight: FontWeight.w500,
-                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 1),
+                    Text(
+                      item['name'] ?? 'Name',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Submission Date:\n04-Sep-2024",
+                          style: TextStyle(fontSize: 12),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 1),
-              Text(
-                item['name'] ?? 'Name',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "Submission Date:\n04-Sep-2024",
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Amount Claimed:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w200,
-                            color: Colors.grey[900]),
-                      ),
-                      Text(
-                        item['amount'] ?? 'Amount',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green[800]),
-                      ),
-                    ],
-                  ),
-                ],
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Amount Claimed:",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w200,
+                                  color: Colors.grey[900]),
+                            ),
+                            Text(
+                              item['amount'] ?? 'Amount',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green[800]),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -492,22 +672,22 @@ class _AdvancesState extends State<Advances> {
     Color textColor,
     Function() onTap, {
     int? badgeCount,
-    bool isSelected = false,
+    bool showCheckBox = false,
   }) {
     return GestureDetector(
       onTap: () {
         onTap(); // Call the onTap function passed to the widget
       },
       child: Container(
-        width: 172, // Set a fixed width for the container
+        width: 160, // Set the width for the container
         height: 65, // Set the same height for the container
         decoration: BoxDecoration(
-          color: isSelected
+          color: showCheckBox
               ? Colors.blue
               : bgColor, // Use bgColor passed to the widget
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isSelected ? Colors.blue : Colors.grey,
+            color: showCheckBox ? Colors.blue : Colors.grey,
           ),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
@@ -518,13 +698,13 @@ class _AdvancesState extends State<Advances> {
             if (badgeCount != null)
               CircleAvatar(
                 radius: 20, // Size of the avatar
-                backgroundColor: isSelected
+                backgroundColor: showCheckBox
                     ? Colors.blue.shade700
                     : Colors.blue.shade50, // Background color of the avatar
                 child: Text(
                   badgeCount.toString(),
                   style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.black,
+                    color: showCheckBox ? Colors.white : Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
