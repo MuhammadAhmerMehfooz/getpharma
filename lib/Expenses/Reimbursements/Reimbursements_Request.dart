@@ -4,6 +4,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../custom_alert.dart';
+
 class ReimbursementsRequest extends StatefulWidget {
   const ReimbursementsRequest({super.key});
 
@@ -25,11 +27,28 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
     );
 
     if (pickedDate != null) {
-      setState(() {
-        _dateController.text =
-            "${pickedDate.toLocal()}".split(' ')[0]; // Format date
-      });
+      if (pickedDate.isAfter(DateTime.now())) {
+        _showAlert(
+          context,
+          "Future Dates Can’t Be Selected for Selling Expenses.",
+          "error",
+        );
+      } else {
+        setState(() {
+          _dateController.text = "${pickedDate.toLocal()}".split(' ')[0];
+        });
+      }
     }
+  }
+
+  void _showAlert(BuildContext context, String text, String type) {
+    showDialog(
+      context: context,
+      builder: (context) => CustomAlert(
+        text: text,
+        type: type,
+      ),
+    );
   }
 
   Future<void> _pickImage() async {
@@ -103,7 +122,7 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                items: ['Marketing Activity', 'Field visit']
+                items: ['Marketing Expense', 'Selling Expense']
                     .map((gender) => DropdownMenuItem<String>(
                           value: gender,
                           child: Text(gender),
@@ -205,7 +224,7 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                 ),
                 elevation: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
                       Text(
@@ -217,25 +236,32 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                         ),
                       ),
                       SizedBox(width: 10),
-                      Text(
-                        '4000',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                      Expanded(
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            isDense: true, // Reduces the height of the input
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 8),
+                          ),
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+
               SizedBox(height: 28),
 
               // Balance and Capped Amount
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Balance Amount
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,18 +282,20 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                           ),
                           elevation: 2,
                           child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30.0, vertical: 10.0),
+                              padding: const EdgeInsets.only(
+                                  left: 6.0,
+                                  right: 20.0,
+                                  top: 10.0,
+                                  bottom: 10.0),
                               child: Row(
                                 children: [
                                   Text(
-                                    'Rs:',
+                                    'Rs: ',
                                     style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(width: 10),
                                   Text(
                                     '10000',
                                     style: TextStyle(
@@ -305,18 +333,20 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                           ),
                           elevation: 2,
                           child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30.0, vertical: 10.0),
+                              padding: const EdgeInsets.only(
+                                  left: 6.0,
+                                  right: 20.0,
+                                  top: 10.0,
+                                  bottom: 10.0),
                               child: Row(
                                 children: [
                                   Text(
-                                    'Rs',
+                                    'Rs: ',
                                     style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  SizedBox(width: 10),
                                   Text(
                                     '2600',
                                     style: TextStyle(
@@ -472,6 +502,11 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
+                    _showAlert(
+                      context,
+                      "Your exprense claim has been submitted for approval.",
+                      "success",
+                    );
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(builder: (context) => AllCustomers()),
@@ -480,7 +515,7 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 150, vertical: 15),
+                        horizontal: 130, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
