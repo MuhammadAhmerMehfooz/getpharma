@@ -431,7 +431,7 @@ class _AddEventState extends State<AddEvent> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => WorkPlan(),
+                              builder: (context) => WorkPlan(fromButton: true),
                             ),
                           );
                         },

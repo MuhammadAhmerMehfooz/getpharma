@@ -3,7 +3,9 @@ import 'package:getpharma/CallReporting/Work%20Plan/Mini_Event.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class WorkPlan extends StatefulWidget {
-  const WorkPlan({super.key});
+  final bool fromButton;
+
+  const WorkPlan({super.key, required this.fromButton});
 
   @override
   State<WorkPlan> createState() => _WorkPlanState();
@@ -20,6 +22,7 @@ class _WorkPlanState extends State<WorkPlan> {
   bool isSecondCardTapped = false;
   bool isThirdCardTapped = false;
   bool isFourthCardTapped = false;
+
   final List<String> _tabTitles = [
     'All',
     'Pending',
@@ -1363,6 +1366,113 @@ class _WorkPlanState extends State<WorkPlan> {
               ],
             ),
           ),
+        if (widget.fromButton)
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Table(
+                    columnWidths: const {
+                      0: FlexColumnWidth(2),
+                      1: FlexColumnWidth(0.6),
+                      2: FlexColumnWidth(1),
+                    },
+                    border: TableBorder.all(
+                      color: Colors.transparent,
+                      style: BorderStyle.none,
+                    ),
+                    children: [
+                      TableRow(
+                        decoration: BoxDecoration(
+                          color: Colors
+                              .blue[100], // Light blue background for header
+                        ),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Name",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 4.0, horizontal: 1.0),
+                            child: Text(
+                              "Planned Visits",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "Frequency",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      _buildTableRow("Alam Laghari", "3", "4"),
+                      _buildTableRow("Abbas", "2", "3"),
+                      _buildTableRow("Abdul Malik Shaikh", "1", "3"),
+                      _buildTableRow("A M Abdullah", "2", "4"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text(
+            "Comments",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            elevation: 4,
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              height: 100,
+              width: 500,
+              child: Text(
+                'These are the remarks from DSM. Please address the highlighted issues before the next review.',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
