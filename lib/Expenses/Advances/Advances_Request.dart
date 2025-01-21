@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:getpharma/Expenses/custom_alert.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AdvancesRequest extends StatefulWidget {
@@ -133,7 +134,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                           elevation: 2,
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
+                                  horizontal: 16.0, vertical: 10.0),
                               child: Row(
                                 children: [
                                   Text(
@@ -150,7 +151,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 16),
+                  SizedBox(width: 10),
 
                   // Capped Amount
                   Expanded(
@@ -174,7 +175,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                           elevation: 2,
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
+                                  horizontal: 16.0, vertical: 10.0),
                               child: Row(
                                 children: [
                                   Text(
@@ -209,6 +210,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                 height: 8,
               ),
 
+              
               Card(
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -216,7 +218,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                 ),
                 elevation: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
                       Text(
@@ -228,12 +230,20 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                         ),
                       ),
                       SizedBox(width: 10),
-                      Text(
-                        '2594',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                      Expanded(
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            border: InputBorder.none,
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 8),
+                          ),
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ],
@@ -352,10 +362,9 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                     fontSize: 18),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               TextField(
-                readOnly: true,
                 cursorColor: Colors.blue,
                 maxLines: 5,
                 decoration: InputDecoration(
@@ -371,6 +380,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   alignLabelWithHint: true,
+                  hintText: 'Enter a detailed description...',
                 ),
               ),
               SizedBox(
@@ -383,11 +393,19 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                     //   context,
                     //   MaterialPageRoute(builder: (context) => AllCustomers()),
                     // );
+                     showDialog(
+                      context: context,
+                      builder: (context) => CustomAlert(
+                        text:
+                            "Advance request has been approved & forwarded to DSM for approval",
+                        type: "success",
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 150, vertical: 15),
+                        horizontal: 130, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

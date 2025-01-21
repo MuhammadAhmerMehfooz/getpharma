@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getpharma/Expenses/Advances/Advances_Request.dart';
 import 'package:getpharma/Expenses/Reimbursements/Approval_Details.dart';
+import 'package:getpharma/Expenses/custom_alert.dart';
 
 class Advances extends StatefulWidget {
   const Advances({super.key});
@@ -11,11 +12,38 @@ class Advances extends StatefulWidget {
 
 class _AdvancesState extends State<Advances> {
   String _selectedTab = "My Advance Request";
-  String _selectedsubTabs = '';
+  String _selectedsubTabs = 'Pending';
   bool _isAdvances = true;
   bool showCheckBox = false;
   bool isAllSelected = false;
   Map<int, bool> selectedItems = {};
+
+  void _showRejectAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return _buildRejectAlert(context);
+      },
+    );
+  }
+
+  Widget _buildRejectAlert(BuildContext context) {
+    return _RejectAlert(
+      onReject: () {
+        Navigator.of(context).pop();
+        showDialog(
+          context: context,
+          builder: (context) => CustomAlert(
+            text: "“Expense claim request has been rejected",
+            type: "success",
+          ),
+        );
+      },
+      onCancel: () {
+        Navigator.of(context).pop();
+      },
+    );
+  }
 
   List<Map<String, String>> data = [
     {
@@ -95,6 +123,10 @@ class _AdvancesState extends State<Advances> {
     });
   }
 
+  int _getSelectedItemsCount() {
+    return selectedItems.values.where((isSelected) => isSelected).length;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -167,40 +199,53 @@ class _AdvancesState extends State<Advances> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          right: 8), // Adds gap between buttons
-                      child: OutlinedButton(
-                        onPressed: () {
-                          setState(() {});
-                        },
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: Colors.white70,
-                          side: const BorderSide(color: Colors.black, width: 2),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                  _getSelectedItemsCount() < 2
+                      ? Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: OutlinedButton(
+                              onPressed: _showRejectAlert,
+                              style: OutlinedButton.styleFrom(
+                                backgroundColor: Colors.white70,
+                                side: const BorderSide(
+                                    color: Colors.black, width: 2),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                'Reject',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          'Reject',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                        )
+                      : SizedBox.shrink(),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 8), // Adds gap between buttons
                       child: ElevatedButton(
                         onPressed: () {
-                          setState(() {});
+                          setState(() {
+                            showCheckBox = false;
+                            selectedItems.clear();
+                            isAllSelected = false;
+                          });
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomAlert(
+                              text:
+                                  "Advance request has been approved & forwarded to DSM for approval",
+                              type: "success",
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
@@ -240,11 +285,8 @@ class _AdvancesState extends State<Advances> {
                 hintStyle: const TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.blueGrey),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue, width: 2),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
                 ),
                 filled: true,
                 fillColor: Colors.blueGrey[50],
@@ -277,6 +319,9 @@ class _AdvancesState extends State<Advances> {
                 setState(() {
                   _selectedTab = "My Advance Request";
                   _isAdvances = true;
+                  showCheckBox = false;
+                  selectedItems.clear();
+                  isAllSelected = false;
                 });
               },
               badgeCount: 4, // Example badgeCount
@@ -356,8 +401,8 @@ class _AdvancesState extends State<Advances> {
 
   Widget _buildReimbursementTabs() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      // padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white, // Background color for the container
         borderRadius:
@@ -729,20 +774,120 @@ class _AdvancesState extends State<Advances> {
     );
   }
 
-  Widget _buildTabForReimbursements(
-      String title, Color bgColor, Color textColor, Function onTap) {
+  Widget _buildTabForReimbursements( String title, Color bgColor, Color textColor, Function onTap ) {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(30),
         ),
         child: Text(
           title,
           style: TextStyle(color: textColor, fontSize: 14),
         ),
+      ),
+    );
+  }
+}
+
+
+class _RejectAlert extends StatelessWidget {
+  final VoidCallback onReject;
+  final VoidCallback onCancel;
+
+  const _RejectAlert({
+    Key? key,
+    required this.onReject,
+    required this.onCancel,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final TextEditingController _controller = TextEditingController();
+
+    return AlertDialog(
+      backgroundColor: Colors.white,
+      insetPadding: EdgeInsets.symmetric(horizontal: 16.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      contentPadding: const EdgeInsets.all(20.0),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Add remarks for your rejection",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 41, 41, 41),
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _controller,
+            maxLines: 4,
+            decoration: InputDecoration(
+              hintText: "Write your remarks here...",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    onCancel();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: const BorderSide(color: Colors.black, width: 1),
+                    ),
+                  ),
+                  child: const Text(
+                    "Cancel",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    onReject();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: const Text(
+                    "Reject",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -240,7 +240,8 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                         child: TextField(
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            isDense: true, // Reduces the height of the input
+                            isDense: true,
+                            border: InputBorder.none,
                             contentPadding:
                                 const EdgeInsets.symmetric(vertical: 8),
                           ),
@@ -502,10 +503,13 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    _showAlert(
-                      context,
-                      "Your exprense claim has been submitted for approval.",
-                      "success",
+                     showDialog(
+                      context: context,
+                      builder: (context) => CustomAlert(
+                        text:
+                            "Your expense claim has been submitted for approval.",
+                        type: "success",
+                      ),
                     );
                     // Navigator.push(
                     //   context,
