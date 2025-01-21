@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getpharma/CallReporting/Work%20Plan/Mini_Event.dart';
+import 'package:getpharma/Expenses/custom_alert.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class WorkPlan extends StatefulWidget {
@@ -13,7 +14,7 @@ class WorkPlan extends StatefulWidget {
 
 class _WorkPlanState extends State<WorkPlan> {
   int selectedIndex = 0;
-  bool isTsmLogin = true; // Hardcoded for demo; set it to false for DSM login
+  bool isTsmLogin = false; // Hardcoded for demo; set it to false for DSM login
   late DateTime selectedDay;
   late DateTime focusedDay;
   String? selectedButton;
@@ -57,14 +58,14 @@ class _WorkPlanState extends State<WorkPlan> {
           ],
         ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.share, color: Colors.white),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.notifications, color: Colors.white),
-            onPressed: () {},
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.share, color: Colors.white),
+          //   onPressed: () {},
+          // ),
+          // IconButton(
+          //   icon: Icon(Icons.notifications, color: Colors.white),
+          //   onPressed: () {},
+          // ),
         ],
       ),
       body: SingleChildScrollView(
@@ -247,6 +248,13 @@ class _WorkPlanState extends State<WorkPlan> {
                         setState(() {
                           selectedButton = 'Save Plan';
                         });
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomAlert(
+                            text: 'Your plan has been saved',
+                            type: 'success',
+                          ),
+                        ).then((_) {});
                       },
                       style: OutlinedButton.styleFrom(
                         backgroundColor: selectedButton == 'Save Plan'
@@ -280,6 +288,17 @@ class _WorkPlanState extends State<WorkPlan> {
                               ? 'Resubmit Plan'
                               : 'Submit Plan';
                         });
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomAlert(
+                              text:
+                                  'Your plan for January has been submitted to the assigned DSM Kashif Afridi',
+                              type:
+                                  'success', // You can set 'success' or 'error' based on your logic
+                            );
+                          },
+                        );
                       },
                       style: OutlinedButton.styleFrom(
                         backgroundColor: selectedButton ==
@@ -1366,7 +1385,7 @@ class _WorkPlanState extends State<WorkPlan> {
               ],
             ),
           ),
-        if (widget.fromButton)
+        if (widget.fromButton && isTsmLogin == true)
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 14.0, vertical: 16.0),
@@ -1440,39 +1459,41 @@ class _WorkPlanState extends State<WorkPlan> {
               ],
             ),
           ),
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Text(
-            "Comments",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            elevation: 4,
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              height: 100,
-              width: 500,
-              child: Text(
-                'These are the remarks from DSM. Please address the highlighted issues before the next review.',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400),
+        if (widget.fromButton)
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(
+              "Comments",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
           ),
-        ),
+        if (widget.fromButton)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              elevation: 4,
+              child: Container(
+                padding: const EdgeInsets.all(16.0),
+                height: 100,
+                width: 500,
+                child: Text(
+                  'These are the remarks from DSM. Please address the highlighted issues before the next review.',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+            ),
+          ),
       ],
     );
   }

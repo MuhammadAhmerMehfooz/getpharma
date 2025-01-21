@@ -60,6 +60,10 @@ class _MiniEventState extends State<MiniEvent> {
         ),
         actions: [
           IconButton(
+            icon: Icon(Icons.person, color: Colors.white),
+            onPressed: () {},
+          ),
+          IconButton(
             icon: Icon(Icons.copy_rounded, color: Colors.white),
             onPressed: () {},
           ),

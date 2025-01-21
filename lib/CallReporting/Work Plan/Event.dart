@@ -16,7 +16,13 @@ class _EventState extends State<Event> {
   String? _selectedPlan = 'My Plan';
   bool _isMorningSelected = false;
   bool _isEveningSelected = false;
-  bool isTsmLogin = true;
+  bool isTsmLogin = false;
+  String? selectedTsm = 'M Ahsan';
+  String? selectedTerritory;
+  final List<String> selectedItems = [];
+  String? selectedtfield;
+  String? selectedtfielddsm;
+  bool isDsmLogin = true; // set true for RSM login.
 
   @override
   Widget build(BuildContext context) {
@@ -168,252 +174,327 @@ class _EventState extends State<Event> {
                                   child: Text('Field Visit')),
                               DropdownMenuItem(
                                   value: 'Meeting', child: Text('Meeting')),
+                              DropdownMenuItem(
+                                  value: ' Marketing Activity',
+                                  child: Text('Marketing Activity')),
+                              DropdownMenuItem(
+                                  value: ' Mega Camp',
+                                  child: Text('Mega Camp')),
+                              DropdownMenuItem(
+                                  value: ' Conferences ',
+                                  child: Text('Conferences')),
                             ],
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              setState(() {
+                                selectedActivity = value as String?;
+                                if (selectedActivity != 'Field Visit') {
+                                  selectedBrick =
+                                      null; // Reset Brick if not Field Visit
+                                }
+                              });
+                            },
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 12, bottom: 8),
-                            child: Text(
-                              'TSM',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                          if (selectedActivity == 'Field Visit') ...[
+                            if (isDsmLogin)
+                              SizedBox(
+                                height: 8,
                               ),
-                            ),
-                          ),
-                          DropdownButtonFormField(
-                            icon: const SizedBox.shrink(),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Icon(
-                                  Icons.person_outline,
-                                  color: Colors.grey,
+                            if (isDsmLogin)
+                              const Padding(
+                                padding: EdgeInsets.only(top: 12, bottom: 8),
+                                child: Text(
+                                  'DSM',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                              suffixIcon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.grey,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                            hint: const Text('Select TSM'),
-                            items: const [
-                              DropdownMenuItem(
-                                  value: 'M. Ahsan', child: Text('M. Ahsan')),
-                              DropdownMenuItem(
-                                  value: 'abc', child: Text('abc')),
-                            ],
-                            onChanged: (value) {},
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 12, bottom: 8),
-                            child: Text(
-                              'Territory',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          DropdownButtonFormField(
-                            icon: const SizedBox.shrink(),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Icon(
-                                  Icons.work_outline,
-                                  color: Colors.grey,
+                            if (isDsmLogin)
+                              DropdownButtonFormField(
+                                icon: const SizedBox.shrink(),
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.only(left: 12),
+                                    child: Icon(
+                                      Icons.person_outline,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  suffixIcon: Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: Colors.grey,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                    borderSide: BorderSide.none,
+                                  ),
                                 ),
+                                hint: const Text('Select DSM'),
+                                items: const [
+                                  DropdownMenuItem(
+                                      value: 'M. Ahsan',
+                                      child: Text('M. Ahsan')),
+                                  DropdownMenuItem(
+                                      value: 'abc', child: Text('abc')),
+                                ],
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedtfielddsm = value as String?;
+                                  });
+                                },
                               ),
-                              suffixIcon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.grey,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                            hint: const Text('Select Territory'),
-                            items: const [
-                              DropdownMenuItem(
-                                  value: 'def', child: Text('def')),
-                              DropdownMenuItem(
-                                  value: 'abc', child: Text('abc')),
-                            ],
-                            onChanged: (value) {},
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 16, bottom: 8),
-                            child: Text(
-                              'Brick',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          DropdownButtonFormField(
-                            icon: const SizedBox.shrink(),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Icon(
-                                  Icons.work_outline,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              suffixIcon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.grey,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                            hint: const Padding(
-                              padding: EdgeInsets.only(left: 8),
-                              child: Text('Select Brick'),
-                            ),
-                            items: const [
-                              DropdownMenuItem(
-                                value: 'Field Visit',
-                                child: Text('Field Visit'),
-                              ),
-                              DropdownMenuItem(
-                                value: 'Meeting',
-                                child: Text('Meeting'),
-                              ),
-                            ],
-                            onChanged: (value) {},
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 16, bottom: 8),
-                            child: Text(
-                              'Doctor',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          DropdownButtonFormField(
-                            icon: SizedBox.shrink(),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Icon(
-                                  Icons.work_outline,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              suffixIcon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.grey,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                            hint: const Text('Select Doctor'),
-                            items: const [
-                              DropdownMenuItem(
-                                  value: 'Abdul Sami Memon',
-                                  child: Text('Abdul Sami Memon')),
-                              DropdownMenuItem(
-                                  value: 'Option 2', child: Text('Option 2')),
-                            ],
-                            onChanged: (value) {},
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 16, bottom: 8),
-                            child: Text(
-                              'Class',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          TextField(
-                            decoration: InputDecoration(
-                              hintText: 'A',
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 16, bottom: 8),
-                            child: Text(
-                              'Doctor\'s Address',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          DropdownButtonFormField(
-                            icon: SizedBox.shrink(),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: Icon(
-                                  Icons.work_outline,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              suffixIcon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.grey,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                            hint: const Text('Select Adress'),
-                            items: const [
-                              DropdownMenuItem(
-                                  value: 'Option 1', child: Text('Option 1')),
-                              DropdownMenuItem(
-                                  value: 'Option 2', child: Text('Option 2')),
-                            ],
-                            onChanged: (value) {},
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: const Text(
-                                'View on Maps',
+                            const Padding(
+                              padding: EdgeInsets.only(top: 12, bottom: 8),
+                              child: Text(
+                                'TSM',
                                 style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.blue,
                                   fontSize: 14,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                          ),
+                            DropdownButtonFormField(
+                              icon: const SizedBox.shrink(),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: Padding(
+                                  padding: const EdgeInsets.only(left: 12),
+                                  child: Icon(
+                                    Icons.person_outline,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Colors.grey,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              hint: const Text('Select TSM'),
+                              items: const [
+                                DropdownMenuItem(
+                                    value: 'M. Ahsan', child: Text('M. Ahsan')),
+                                DropdownMenuItem(
+                                    value: 'abc', child: Text('abc')),
+                              ],
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedtfield = value as String?;
+                                });
+                              },
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 12, bottom: 8),
+                              child: Text(
+                                'Territory',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            DropdownButtonFormField(
+                              icon: const SizedBox.shrink(),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: Padding(
+                                  padding: const EdgeInsets.only(left: 12),
+                                  child: Icon(
+                                    Icons.work_outline,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Colors.grey,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              hint: const Text('Select Territory'),
+                              items: const [
+                                DropdownMenuItem(
+                                    value: 'def', child: Text('def')),
+                                DropdownMenuItem(
+                                    value: 'abc', child: Text('abc')),
+                              ],
+                              onChanged: (value) {},
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 16, bottom: 8),
+                              child: Text(
+                                'Brick',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            DropdownButtonFormField(
+                              icon: const SizedBox.shrink(),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: Padding(
+                                  padding: const EdgeInsets.only(left: 12),
+                                  child: Icon(
+                                    Icons.work_outline,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Colors.grey,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              hint: const Padding(
+                                padding: EdgeInsets.only(left: 8),
+                                child: Text('Select Brick'),
+                              ),
+                              items: const [
+                                DropdownMenuItem(
+                                  value: 'Field Visit',
+                                  child: Text('Field Visit'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'Meeting',
+                                  child: Text('Meeting'),
+                                ),
+                              ],
+                              onChanged: (value) {},
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 16, bottom: 8),
+                              child: Text(
+                                'Doctor',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            DropdownButtonFormField(
+                              icon: SizedBox.shrink(),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: Padding(
+                                  padding: const EdgeInsets.only(left: 12),
+                                  child: Icon(
+                                    Icons.work_outline,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Colors.grey,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              hint: const Text('Select Doctor'),
+                              items: const [
+                                DropdownMenuItem(
+                                    value: 'Abdul Sami Memon',
+                                    child: Text('Abdul Sami Memon')),
+                                DropdownMenuItem(
+                                    value: 'Option 2', child: Text('Option 2')),
+                              ],
+                              onChanged: (value) {},
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 16, bottom: 8),
+                              child: Text(
+                                'Class',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            TextField(
+                              readOnly: true,
+                              decoration: InputDecoration(
+                                hintText: 'A',
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 16, bottom: 8),
+                              child: Text(
+                                'Doctor\'s Address',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            DropdownButtonFormField(
+                              icon: SizedBox.shrink(),
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: Padding(
+                                  padding: const EdgeInsets.only(left: 12),
+                                  child: Icon(
+                                    Icons.work_outline,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Colors.grey,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              hint: const Text('Select Adress'),
+                              items: const [
+                                DropdownMenuItem(
+                                    value: 'Option 1', child: Text('Option 1')),
+                                DropdownMenuItem(
+                                    value: 'Option 2', child: Text('Option 2')),
+                              ],
+                              onChanged: (value) {},
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: const Text(
+                                  'View on Maps',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                           const Padding(
                             padding: EdgeInsets.only(top: 16, bottom: 8),
                             child: Text(
@@ -439,11 +520,11 @@ class _EventState extends State<Event> {
                                         vertical: 12),
                                     decoration: BoxDecoration(
                                       color: _selectedTime == "Morning"
-                                          ? Colors.orangeAccent
+                                          ? Colors.blue
                                           : Colors.white,
                                       borderRadius: BorderRadius.circular(8),
                                       border: _selectedTime == "Morning"
-                                          ? Border.all(color: Colors.orange)
+                                          ? Border.all(color: Colors.blue)
                                           : Border.all(color: Colors.white),
                                     ),
                                     child: Row(
@@ -454,7 +535,7 @@ class _EventState extends State<Event> {
                                           Icons.wb_sunny_outlined,
                                           size: 18,
                                           color: _selectedTime == "Morning"
-                                              ? Colors.deepOrange.shade900
+                                              ? Colors.white
                                               : Colors.black,
                                         ),
                                         const SizedBox(width: 8),
@@ -463,7 +544,7 @@ class _EventState extends State<Event> {
                                           style: TextStyle(
                                             fontSize: 14,
                                             color: _selectedTime == "Morning"
-                                                ? Colors.deepOrange.shade900
+                                                ? Colors.white
                                                 : Colors.black,
                                           ),
                                         ),
@@ -567,17 +648,19 @@ class _EventState extends State<Event> {
                             height: 20,
                           ),
                         ] else ...[
-                          const Padding(
-                            padding: EdgeInsets.only(top: 12, bottom: 8),
-                            child: Text(
-                              'TSM',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                          if (isDsmLogin)
+                            const Padding(
+                              padding: EdgeInsets.only(top: 12, bottom: 8),
+                              child: Text(
+                                'DSM',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
                           DropdownButtonFormField(
+                            value: selectedTsm,
                             icon: const SizedBox.shrink(),
                             decoration: InputDecoration(
                               filled: true,
@@ -601,11 +684,72 @@ class _EventState extends State<Event> {
                             hint: const Text('Select TSM'),
                             items: const [
                               DropdownMenuItem(
-                                  value: 'M. Ahsan', child: Text('M. Ahsan')),
+                                  value: 'M Ahsan', child: Text('M Ahsan')),
                               DropdownMenuItem(
-                                  value: 'abc', child: Text('abc')),
+                                  value: 'Ali', child: Text('Ali')),
+                              // DropdownMenuItem(
+                              //     value: 'abc', child: Text('abc')),
                             ],
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              setState(() {
+                                selectedTsm = value;
+                                if (value != null &&
+                                    !selectedItems.contains(value)) {
+                                  selectedItems.add(value);
+                                }
+                              });
+                            },
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(top: 12, bottom: 8),
+                            child: Text(
+                              'TSM',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          DropdownButtonFormField(
+                            value: selectedTsm,
+                            icon: const SizedBox.shrink(),
+                            decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.only(left: 12),
+                                child: Icon(
+                                  Icons.person_outline,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              suffixIcon: Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Colors.grey,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide.none,
+                              ),
+                            ),
+                            hint: const Text('Select TSM'),
+                            items: const [
+                              DropdownMenuItem(
+                                  value: 'M Ahsan', child: Text('M Ahsan')),
+                              DropdownMenuItem(
+                                  value: 'Ali', child: Text('Ali')),
+                              // DropdownMenuItem(
+                              //     value: 'abc', child: Text('abc')),
+                            ],
+                            onChanged: (value) {
+                              setState(() {
+                                selectedTsm = value;
+                                if (value != null &&
+                                    !selectedItems.contains(value)) {
+                                  selectedItems.add(value);
+                                }
+                              });
+                            },
                           ),
                           const Padding(
                             padding: EdgeInsets.only(top: 12, bottom: 8),
@@ -618,6 +762,7 @@ class _EventState extends State<Event> {
                             ),
                           ),
                           DropdownButtonFormField(
+                            value: selectedTerritory,
                             icon: const SizedBox.shrink(),
                             decoration: InputDecoration(
                               filled: true,
@@ -645,7 +790,15 @@ class _EventState extends State<Event> {
                               DropdownMenuItem(
                                   value: 'abc', child: Text('abc')),
                             ],
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              setState(() {
+                                selectedTerritory = value;
+                                if (value != null &&
+                                    !selectedItems.contains(value)) {
+                                  selectedItems.add(value);
+                                }
+                              });
+                            },
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 12, bottom: 8),
@@ -778,6 +931,24 @@ class _EventState extends State<Event> {
                                   value: 'abc', child: Text('abc')),
                             ],
                             onChanged: (value) {},
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: selectedItems.map((item) {
+                              return Chip(
+                                label: Text(item),
+                                deleteIcon: const Icon(Icons.close),
+                                onDeleted: () {
+                                  setState(() {
+                                    selectedItems.remove(item);
+                                  });
+                                },
+                              );
+                            }).toList(),
                           ),
                           SizedBox(
                             height: 30,

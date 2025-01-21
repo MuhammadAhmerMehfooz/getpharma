@@ -404,11 +404,15 @@ class _VisitDetailsState extends State<VisitDetails> {
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.share, color: Colors.white),
+          icon: Icon(Icons.person, color: Colors.white),
           onPressed: () {},
         ),
         IconButton(
-          icon: Icon(Icons.notifications, color: Colors.white),
+          icon: Icon(Icons.copy, color: Colors.white),
+          onPressed: () {},
+        ),
+        IconButton(
+          icon: Icon(Icons.delete, color: Colors.white),
           onPressed: () {},
         ),
       ],
