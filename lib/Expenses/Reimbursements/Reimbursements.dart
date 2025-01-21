@@ -99,7 +99,6 @@ class _ReimbursementsState extends State<Reimbursements> {
   ];
 
   void initializeSelectedItems() {
-    print("initializeSelectedItems");
     for (var item in data) {
       if (item['id'] != null) {
         selectedItems[int.parse(item['id']!)] = false;
@@ -117,12 +116,15 @@ class _ReimbursementsState extends State<Reimbursements> {
   }
 
   void toggleCardSelection(int id, bool? value) {
-    print('toggle card hoa hai !!!!!!!!!!!!!!!!!!!!!!!!!!');
     setState(() {
       selectedItems[id] = value ?? false;
       isAllSelected = selectedItems.length == data.length &&
           selectedItems.values.every((isSelected) => isSelected);
     });
+  }
+  
+  int _getSelectedItemsCount() {
+    return selectedItems.values.where((isSelected) => isSelected).length;
   }
 
   @override
@@ -192,31 +194,32 @@ class _ReimbursementsState extends State<Reimbursements> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          right: 8), // Adds gap between buttons
-                      child: OutlinedButton(
-                        onPressed: _showRejectAlert,
-                        style: OutlinedButton.styleFrom(
-                          backgroundColor: Colors.white70,
-                          side: const BorderSide(color: Colors.black, width: 2),
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                  _getSelectedItemsCount() < 2
+                      ? Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: OutlinedButton(
+                              onPressed: _showRejectAlert,
+                              style: OutlinedButton.styleFrom(
+                                backgroundColor: Colors.white70,
+                                side: const BorderSide(color: Colors.black, width: 2),
+                                padding: const EdgeInsets.symmetric(vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Text(
+                                'Reject',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          'Reject',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                        )
+                      : SizedBox.shrink(),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -226,6 +229,13 @@ class _ReimbursementsState extends State<Reimbursements> {
                           setState(() {
                             showCheckBox = false;
                           });
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomAlert(
+                              text: "Expense claim request has been approved & forwarded to DSM for approval",
+                              type: "success",
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
@@ -299,6 +309,9 @@ class _ReimbursementsState extends State<Reimbursements> {
                 setState(() {
                   _selectedTab = "Reimbursements Request";
                   _isReimbursements = true;
+                  showCheckBox = false;
+                  selectedItems.clear();
+                  isAllSelected = false;
                 });
               },
               badgeCount: 4, // Example badgeCount
@@ -379,11 +392,10 @@ class _ReimbursementsState extends State<Reimbursements> {
   Widget _buildReimbursementTabs() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-      // padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white, // Background color for the container
+        color: Colors.white, 
         borderRadius:
-            BorderRadius.circular(30), // Rounded corners for the container
+            BorderRadius.circular(30), 
       ),
       child: Row(
         mainAxisAlignment:

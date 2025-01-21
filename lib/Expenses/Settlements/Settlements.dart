@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getpharma/Expenses/Reimbursements/Approval_Details.dart';
+import 'package:getpharma/Expenses/custom_alert.dart';
 
 class Settlements extends StatefulWidget {
   const Settlements({super.key});
@@ -10,11 +11,38 @@ class Settlements extends StatefulWidget {
 
 class _SettlementsState extends State<Settlements> {
   String _selectedTab = "Settlements";
-  bool _isSettlements = false;
-  String _selectedsubTabs = '';
+  bool _isSettlements = true;
+  String _selectedsubTabs = 'Pending';
   bool showCheckBox = false;
   bool isAllSelected = false;
   Map<int, bool> selectedItems = {};
+
+  void _showRejectAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return _buildRejectAlert(context);
+      },
+    );
+  }
+
+  Widget _buildRejectAlert(BuildContext context) {
+    return _RejectAlert(
+      onReject: () {
+        Navigator.of(context).pop();
+        showDialog(
+          context: context,
+          builder: (context) => CustomAlert(
+            text: "Settlement case has been rejected",
+            type: "success",
+          ),
+        );
+      },
+      onCancel: () {
+        Navigator.of(context).pop();
+      },
+    );
+  }
 
   List<Map<String, String>> data = [
     {
@@ -94,6 +122,10 @@ class _SettlementsState extends State<Settlements> {
     });
   }
 
+   int _getSelectedItemsCount() {
+    return selectedItems.values.where((isSelected) => isSelected).length;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -153,11 +185,20 @@ class _SettlementsState extends State<Settlements> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          right: 8),
+                      padding: const EdgeInsets.only(right: 8),
                       child: OutlinedButton(
                         onPressed: () {
-                          setState(() {});
+                          if (_getSelectedItemsCount() > 1) {
+                            showDialog(
+                              context: context,
+                               builder: (context) => CustomAlert(
+                                text: "Multiple Requests cannot be rejected simultaneously",
+                                type: "error",
+                              ),
+                            );
+                          } else {
+                            _showRejectAlert();
+                          }
                         },
                         style: OutlinedButton.styleFrom(
                           backgroundColor: Colors.white70,
@@ -180,11 +221,20 @@ class _SettlementsState extends State<Settlements> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8), 
+                      padding: const EdgeInsets.only(left: 8),
                       child: ElevatedButton(
                         onPressed: () {
-                          setState(() {});
+                          setState(() {
+                            showCheckBox = false;
+                          });
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomAlert(
+                              text:
+                                  "Settlement case has been approved & forwarded to DSM for approval",
+                              type: "success",
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
@@ -224,11 +274,8 @@ class _SettlementsState extends State<Settlements> {
                 hintStyle: const TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.blueGrey),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.blue, width: 2),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
                 ),
                 filled: true,
                 fillColor: Colors.blueGrey[50],
@@ -257,6 +304,9 @@ class _SettlementsState extends State<Settlements> {
                 setState(() {
                   _selectedTab = "Settlements";
                   _isSettlements = true;
+                  showCheckBox = false;
+                  selectedItems.clear();
+                  isAllSelected = false;
                 });
               },
               badgeCount: 4,
@@ -337,7 +387,7 @@ class _SettlementsState extends State<Settlements> {
   Widget _buildReimbursementTabs() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      // padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white, // Background color for the container
         borderRadius:
@@ -368,12 +418,22 @@ class _SettlementsState extends State<Settlements> {
             },
           ),
           _buildTabForReimbursements(
-            "Rejected",
-            _selectedsubTabs == "Rejected" ? Colors.blue : Colors.white,
-            _selectedsubTabs == "Rejected" ? Colors.white : Colors.black,
+            "Rework",
+            _selectedsubTabs == "Rework" ? Colors.blue : Colors.white,
+            _selectedsubTabs == "Rework" ? Colors.white : Colors.black,
             () {
               setState(() {
-                _selectedsubTabs = "Rejected";
+                _selectedsubTabs = "Rework";
+              });
+            },
+          ),
+          _buildTabForReimbursements(
+            "Settled",
+            _selectedsubTabs == "Settled" ? Colors.blue : Colors.white,
+            _selectedsubTabs == "Settled" ? Colors.white : Colors.black,
+            () {
+              setState(() {
+                _selectedsubTabs = "Settled";
               });
             },
           ),
@@ -714,15 +774,115 @@ class _SettlementsState extends State<Settlements> {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
           title,
           style: TextStyle(color: textColor, fontSize: 14),
         ),
+      ),
+    );
+  }
+}
+
+class _RejectAlert extends StatelessWidget {
+  final VoidCallback onReject;
+  final VoidCallback onCancel;
+
+  const _RejectAlert({
+    Key? key,
+    required this.onReject,
+    required this.onCancel,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final TextEditingController _controller = TextEditingController();
+
+    return AlertDialog(
+      backgroundColor: Colors.white,
+      insetPadding: EdgeInsets.symmetric(horizontal: 16.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      contentPadding: const EdgeInsets.all(20.0),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Add remarks for your rejection",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 41, 41, 41),
+            ),
+          ),
+          const SizedBox(height: 16),
+          TextField(
+            controller: _controller,
+            maxLines: 4,
+            decoration: InputDecoration(
+              hintText: "Write your remarks here...",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    onCancel();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: const BorderSide(color: Colors.black, width: 1),
+                    ),
+                  ),
+                  child: const Text(
+                    "Cancel",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    onReject();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: const Text(
+                    "Reject",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
