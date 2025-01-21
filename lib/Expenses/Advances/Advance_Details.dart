@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ExpensesDetailsScreen extends StatefulWidget {
+class AdvanceDetailsScreen extends StatefulWidget {
   @override
   _ExpensesDetailsScreenState createState() => _ExpensesDetailsScreenState();
 }
 
-class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
+class _ExpensesDetailsScreenState extends State<AdvanceDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-
-     List<String> ImageCards = [
+    List<String> ImageCards = [
       'assets/images/buisnesscard1.jpg',
       'assets/images/buisnesscard2.jpg',
       'assets/images/buisnesscard3.jpg',
@@ -72,7 +71,8 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                             ),
                             Text(
                               'DSM - 2390',
-                              style: TextStyle(fontSize: 12, color: Colors.grey),
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.grey),
                             ),
                           ],
                         ),
@@ -96,7 +96,7 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-        
+
               Card(
                 color: Colors.white,
                 elevation: 4,
@@ -130,7 +130,43 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Claimed Amount',
+                            'Activity Planned From',
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey.shade600),
+                          ),
+                          Text(
+                            '05/10/2024',
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Divider(thickness: 1, color: Colors.grey.shade300),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Activity Planned To',
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey.shade600),
+                          ),
+                          Text(
+                            '07/10/2024',
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Divider(thickness: 1, color: Colors.grey.shade300),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Requested Amount',
                             style: TextStyle(
                                 fontSize: 14, color: Colors.grey.shade600),
                           ),
@@ -165,7 +201,7 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                   ),
                 ),
               ),
-        
+
               const SizedBox(height: 16),
               const Text(
                 'Attachment',
@@ -173,20 +209,18 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
               ),
               const SizedBox(height: 12),
               Container(
-                height: 120, 
+                height: 120,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: ImageCards
-                      .length, 
+                  itemCount: ImageCards.length,
                   itemBuilder: (context, index) {
                     return Container(
                       margin: EdgeInsets.symmetric(horizontal: 8),
-                      width: 250, 
-        
+                      width: 250,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          ImageCards[index], 
+                          ImageCards[index],
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -195,7 +229,6 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-        
             ],
           ),
         ),

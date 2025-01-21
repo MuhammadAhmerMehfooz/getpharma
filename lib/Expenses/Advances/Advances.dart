@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getpharma/Expenses/Advances/Advance_Details.dart';
 import 'package:getpharma/Expenses/Advances/Advances_Request.dart';
 import 'package:getpharma/Expenses/Reimbursements/Approval_Details.dart';
 import 'package:getpharma/Expenses/custom_alert.dart';
@@ -459,58 +460,75 @@ class _AdvancesState extends State<Advances> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    item['title'] ?? 'Title',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.orange.shade100, // Background color
-                      borderRadius: BorderRadius.circular(12),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AdvanceDetailsScreen(),
                     ),
-                    child: Text(
-                      item['status'] ?? 'Status',
-                      style: TextStyle(
-                        backgroundColor: Colors.orange.shade100,
-                        fontSize: 12,
-                        color: Colors.orange.shade900, // Text color
-                        fontWeight: FontWeight.w500,
-                      ),
+                  );
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          item['title'] ?? 'Title',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.orange.shade100, // Background color
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            item['status'] ?? 'Status',
+                            style: TextStyle(
+                              backgroundColor: Colors.orange.shade100,
+                              fontSize: 12,
+                              color: Colors.orange.shade900, // Text color
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              Text(
-                item['name'] ?? 'Name',
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text("Submission Date:\n04-Sep-2024"),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Amount Claimed:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w200,
-                            color: Colors.grey[900]),
-                      ),
-                      Text(
-                        item['amount'] ?? 'Amount',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green[800]),
-                      ),
-                    ],
-                  ),
-                ],
+                    Text(
+                      item['name'] ?? 'Name',
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Submission Date:\n04-Sep-2024"),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Amount Claimed:",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w200,
+                                  color: Colors.grey[900]),
+                            ),
+                            Text(
+                              item['amount'] ?? 'Amount',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.green[800]),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
               const Divider(),
