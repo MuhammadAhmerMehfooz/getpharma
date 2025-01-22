@@ -9,10 +9,10 @@ class _ExpensesDetailsScreenState extends State<AdvanceDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     List<String> ImageCards = [
-      'assets/images/buisnesscard1.jpg',
-      'assets/images/buisnesscard2.jpg',
-      'assets/images/buisnesscard3.jpg',
-      'assets/images/buisnesscard4.jpg',
+      'assets/images/rec1.jpg',
+      'assets/images/rec2.jpg',
+      'assets/images/rec3.png',
+      'assets/images/rec4.jpg',
     ];
 
     return Scaffold(

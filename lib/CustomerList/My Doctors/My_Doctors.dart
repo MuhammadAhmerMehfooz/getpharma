@@ -38,6 +38,20 @@ class _MyDoctorsState extends State<MyDoctors> {
       "contact": "12432-897900-4",
       "additionalInfo": "9876543210",
     },
+    {
+      "name": "Asim",
+      "specialty": "Cardiologist - MBBS",
+      "id": "12349593-D",
+      "contact": "12432-456901-4",
+      "additionalInfo": "98765432374",
+    },
+    {
+      "name": "Rashid",
+      "specialty": "surgeon - MBBS",
+      "id": "1234247484-D",
+      "contact": "12432-4566392-4",
+      "additionalInfo": "9876542903",
+    },
   ];
 
   /////////////////////////////////////////// UI //////////////////////////////////////////////////////

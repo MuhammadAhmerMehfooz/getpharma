@@ -14,7 +14,7 @@ class WorkPlan extends StatefulWidget {
 
 class _WorkPlanState extends State<WorkPlan> {
   int selectedIndex = 0;
-  bool isTsmLogin = false; // Hardcoded for demo; set it to false for DSM login
+  bool isTsmLogin = true; // Hardcoded for demo; set it to false for DSM login
   late DateTime selectedDay;
   late DateTime focusedDay;
   String? selectedButton;

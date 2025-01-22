@@ -8,15 +8,15 @@ class ExpensesDetailsScreen extends StatefulWidget {
 class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-
-     List<String> ImageCards = [
-      'assets/images/buisnesscard1.jpg',
-      'assets/images/buisnesscard2.jpg',
-      'assets/images/buisnesscard3.jpg',
-      'assets/images/buisnesscard4.jpg',
+    List<String> ImageCards = [
+      'assets/images/rec1.jpg',
+      'assets/images/rec2.jpg',
+      'assets/images/rec3.png',
+      'assets/images/rec4.jpg',
     ];
 
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
@@ -34,7 +34,6 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
         ),
       ),
       body: Container(
-        color: Colors.grey.shade100,
         child: SingleChildScrollView(
           padding: EdgeInsets.all(16),
           child: Column(
@@ -72,7 +71,8 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                             ),
                             Text(
                               'DSM - 2390',
-                              style: TextStyle(fontSize: 12, color: Colors.grey),
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.grey),
                             ),
                           ],
                         ),
@@ -96,7 +96,7 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-        
+
               Card(
                 color: Colors.white,
                 elevation: 4,
@@ -165,7 +165,7 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                   ),
                 ),
               ),
-        
+
               const SizedBox(height: 16),
               const Text(
                 'Attachment',
@@ -173,20 +173,18 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
               ),
               const SizedBox(height: 12),
               Container(
-                height: 120, 
+                height: 120,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: ImageCards
-                      .length, 
+                  itemCount: ImageCards.length,
                   itemBuilder: (context, index) {
                     return Container(
                       margin: EdgeInsets.symmetric(horizontal: 8),
-                      width: 250, 
-        
+                      width: 250,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
-                          ImageCards[index], 
+                          ImageCards[index],
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -194,8 +192,7 @@ class _ExpensesDetailsScreenState extends State<ExpensesDetailsScreen> {
                   },
                 ),
               ),
-              const SizedBox(height: 12),
-        
+              // const SizedBox(height: 12),
             ],
           ),
         ),
