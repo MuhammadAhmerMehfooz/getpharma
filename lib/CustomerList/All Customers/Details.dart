@@ -70,7 +70,7 @@ class _DetailsState extends State<Details> {
               height: 2,
             ),
             const SizedBox(height: 16.0),
-            buildSectionTitle('Address 1'),
+            buildSectionSubTitle('Address 1'),
             SizedBox(
               height: 8,
             ),
@@ -80,7 +80,7 @@ class _DetailsState extends State<Details> {
               'City': 'Karachi'
             }),
             const SizedBox(height: 16.0),
-            buildSectionTitle('Address 2'),
+            buildSectionSubTitle('Address 2'),
             SizedBox(
               height: 8,
             ),
@@ -148,7 +148,17 @@ class _DetailsState extends State<Details> {
     return Text(
       title,
       style: const TextStyle(
-        fontSize: 16,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget buildSectionSubTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 18,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -205,7 +215,7 @@ class _DetailsState extends State<Details> {
       color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
-        side: BorderSide(color: Colors.blue, width: 2),
+        side: BorderSide(color: Colors.white, width: 2),
       ),
       elevation: 6,
       child: Padding(
@@ -226,12 +236,12 @@ class _DetailsState extends State<Details> {
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12.0,
-                    vertical: 6.0,
+                    vertical: 4.0,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
+                    color: Colors.blue.shade50,
                     borderRadius: BorderRadius.circular(20.0),
-                    border: Border.all(color: Colors.blue, width: 2),
+                    border: Border.all(color: Colors.blue.shade50, width: 2),
                   ),
                   child: const Text(
                     'Default',
@@ -243,13 +253,49 @@ class _DetailsState extends State<Details> {
                 ),
               ],
             ),
-            Text(
-              'Brick: ${address['Brick']}',
-              style: const TextStyle(fontSize: 14.0),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Brick: ',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold, // Style for "Brick"
+                      color: Colors.grey,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${address['Brick']}',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500, // Style for value
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Text(
-              'City: ${address['City']}',
-              style: const TextStyle(fontSize: 14.0),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'City: ',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold, // Style for "City"
+                      color: Colors.grey,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${address['City']}',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500, // Style for value
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 8.0),
             Row(
@@ -305,12 +351,12 @@ class _DetailsState extends State<Details> {
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12.0,
-                    vertical: 6.0,
+                    vertical: 4.0,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.grey.shade300,
                     borderRadius: BorderRadius.circular(20.0),
-                    border: Border.all(color: Colors.black, width: 2),
+                    border: Border.all(color: Colors.grey.shade300, width: 2),
                   ),
                   child: const Text(
                     'Not Default',
@@ -322,13 +368,49 @@ class _DetailsState extends State<Details> {
                 ),
               ],
             ),
-            Text(
-              'Brick: ${address['Brick']}',
-              style: const TextStyle(fontSize: 14.0),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Brick: ',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold, // Style for "Brick"
+                      color: Colors.grey,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${address['Brick']}',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500, // Style for value
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Text(
-              'City: ${address['City']}',
-              style: const TextStyle(fontSize: 14.0),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'City: ',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold, // Style for "City"
+                      color: Colors.grey,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${address['City']}',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500, // Style for value
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 8.0),
             Row(

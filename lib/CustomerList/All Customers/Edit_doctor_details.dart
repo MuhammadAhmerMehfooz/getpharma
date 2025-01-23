@@ -85,127 +85,167 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
-                'Name',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Name',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              TextField(
-                cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'Name',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320, // Set desired width
+                  child: TextField(
+                    cursorColor: Colors.blue,
+                    decoration: InputDecoration(
+                      labelText: 'Name',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'Phone Number',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Phone Number',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              TextField(
-                cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: TextField(
+                    cursorColor: Colors.blue,
+                    decoration: InputDecoration(
+                      labelText: 'Phone Number',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    keyboardType: TextInputType.phone,
                   ),
                 ),
-                keyboardType: TextInputType.phone,
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'CNIC Number',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'CNIC Number',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              TextField(
-                cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'CNIC Number',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: TextField(
+                    cursorColor: Colors.blue,
+                    decoration: InputDecoration(
+                      labelText: 'CNIC Number',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
                   ),
                 ),
-                keyboardType: TextInputType.number,
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'Gender',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Gender',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              DropdownButtonFormField<String>(
-                value: selectedGender,
-                decoration: InputDecoration(
-                  labelText: 'Gender',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: DropdownButtonFormField<String>(
+                    value: selectedGender,
+                    decoration: InputDecoration(
+                      labelText: 'Gender',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    items: ['Male', 'Female']
+                        .map((gender) => DropdownMenuItem<String>(
+                              value: gender,
+                              child: Text(gender),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedGender = value; // Dropdown value update
+                      });
+                    },
                   ),
                 ),
-                items: ['Male', 'Female']
-                    .map((gender) => DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedGender = value; // Dropdown value update
-                  });
-                },
               ),
               SizedBox(height: 20),
               const Text(
@@ -219,136 +259,176 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'PMDC Number',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'PMDC Number',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              TextField(
-                cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'PMDC Number',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: TextField(
+                    cursorColor: Colors.blue,
+                    decoration: InputDecoration(
+                      labelText: 'PMDC Number',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'Designation',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              DropdownButtonFormField<String>(
-                value: selectedGender,
-                decoration: InputDecoration(
-                  labelText: 'Designation',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Designation',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
                 ),
-                items: ['Conultant', 'Professor Doctor', 'Department head']
-                    .map((gender) => DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedGender = value; // Dropdown value update
-                  });
-                },
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              Text(
-                'Qualification',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextField(
-                cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'Qualification',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: DropdownButtonFormField<String>(
+                    value: selectedGender,
+                    decoration: InputDecoration(
+                      labelText: 'Designation',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    items: ['Conultant', 'Professor Doctor', 'Department head']
+                        .map((gender) => DropdownMenuItem<String>(
+                              value: gender,
+                              child: Text(gender),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedGender = value; // Dropdown value update
+                      });
+                    },
                   ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'Speciality',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Qualification',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: TextField(
+                    cursorColor: Colors.blue,
+                    decoration: InputDecoration(
+                      labelText: 'Qualification',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              DropdownButtonFormField<String>(
-                value: selectedGender,
-                decoration: InputDecoration(
-                  labelText: 'Speciality',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Speciality',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: DropdownButtonFormField<String>(
+                    value: selectedGender,
+                    decoration: InputDecoration(
+                      labelText: 'Speciality',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    items: ['Endocrinologist', 'Oncologist', 'Neurologist']
+                        .map((gender) => DropdownMenuItem<String>(
+                              value: gender,
+                              child: Text(gender),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedGender = value; // Dropdown value update
+                      });
+                    },
                   ),
                 ),
-                items: ['Endocrinologist', 'Oncologist', 'Neurologist']
-                    .map((gender) => DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedGender = value; // Dropdown value update
-                  });
-                },
               ),
               SizedBox(height: 20),
               const Text(
@@ -360,178 +440,228 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
-                'Name',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextField(
-                cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'Name',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Name',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              Text(
-                'Brick',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              DropdownButtonFormField<String>(
-                value: selectedGender,
-                decoration: InputDecoration(
-                  labelText: 'Brick',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                items: ['Clifton', 'Defense', 'Malir']
-                    .map((gender) => DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedGender = value; // Dropdown value update
-                  });
-                },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Address',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextField(
-                cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'Address',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Set up Location on Map',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextField(
-                cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'Set up Location on Map',
-                  suffixIcon: IconButton(
-                    icon: const Icon(
-                      Icons.location_on,
-                      color: Colors.blue,
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: TextField(
+                    cursorColor: Colors.blue,
+                    decoration: InputDecoration(
+                      labelText: 'Name',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    onPressed: () {},
-                  ),
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'City',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Brick',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: DropdownButtonFormField<String>(
+                    value: selectedGender,
+                    decoration: InputDecoration(
+                      labelText: 'Brick',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    items: ['Clifton', 'Defense', 'Malir']
+                        .map((gender) => DropdownMenuItem<String>(
+                              value: gender,
+                              child: Text(gender),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedGender = value; // Dropdown value update
+                      });
+                    },
+                  ),
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              DropdownButtonFormField<String>(
-                value: selectedGender,
-                decoration: InputDecoration(
-                  labelText: 'City',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Address',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: TextField(
+                    cursorColor: Colors.blue,
+                    decoration: InputDecoration(
+                      labelText: 'Address',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                   ),
                 ),
-                items: [
-                  'Karachi',
-                  'Lahore',
-                  'Islamabad',
-                  'Quetta',
-                  'Multan',
-                  'Peshawar'
-                ]
-                    .map((gender) => DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedGender = value; // Dropdown value update
-                  });
-                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Set up Location on Map',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: TextField(
+                    cursorColor: Colors.blue,
+                    decoration: InputDecoration(
+                      labelText: 'Set up Location on Map',
+                      suffixIcon: IconButton(
+                        icon: const Icon(
+                          Icons.location_on,
+                          color: Colors.blue,
+                        ),
+                        onPressed: () {},
+                      ),
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'City',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: DropdownButtonFormField<String>(
+                    value: selectedGender,
+                    decoration: InputDecoration(
+                      labelText: 'City',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    items: [
+                      'Karachi',
+                      'Lahore',
+                      'Islamabad',
+                      'Quetta',
+                      'Multan',
+                      'Peshawar'
+                    ]
+                        .map((gender) => DropdownMenuItem<String>(
+                              value: gender,
+                              child: Text(gender),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedGender = value; // Dropdown value update
+                      });
+                    },
+                  ),
+                ),
               ),
               SizedBox(height: 20),
               const Text(
@@ -543,89 +673,109 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                 ),
               ),
               const SizedBox(height: 10),
-              Text(
-                'Class',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Class',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              DropdownButtonFormField<String>(
-                value: selectedclass,
-                decoration: InputDecoration(
-                  labelText: 'Class',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: DropdownButtonFormField<String>(
+                    value: selectedclass,
+                    decoration: InputDecoration(
+                      labelText: 'Class',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    items: [
+                      'A',
+                      'B',
+                      'C',
+                      'D',
+                    ]
+                        .map((classtype) => DropdownMenuItem<String>(
+                              value: classtype,
+                              child: Text(classtype),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedclass = value; // Dropdown value update
+                      });
+                    },
                   ),
                 ),
-                items: [
-                  'A',
-                  'B',
-                  'C',
-                  'D',
-                ]
-                    .map((classtype) => DropdownMenuItem<String>(
-                          value: classtype,
-                          child: Text(classtype),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedclass = value; // Dropdown value update
-                  });
-                },
               ),
               const SizedBox(height: 10),
-              Text(
-                'Frequency',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text(
+                  'Frequency',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+                ),
               ),
               SizedBox(
-                height: 10,
+                height: 4,
               ),
-              DropdownButtonFormField<String>(
-                value: selectedfrequency,
-                decoration: InputDecoration(
-                  labelText: 'Frequency',
-                  labelStyle:
-                      TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: SizedBox(
+                  width: 320,
+                  child: DropdownButtonFormField<String>(
+                    value: selectedfrequency,
+                    decoration: InputDecoration(
+                      labelText: 'Frequency',
+                      labelStyle:
+                          TextStyle(color: Colors.grey.shade900, fontSize: 14),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    items: [
+                      '1',
+                      '2',
+                      '3',
+                      '4',
+                    ]
+                        // ignore: non_constant_identifier_names
+                        .map((Frequency) => DropdownMenuItem<String>(
+                              value: Frequency,
+                              child: Text(Frequency),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedfrequency = value; // Dropdown value update
+                      });
+                    },
                   ),
                 ),
-                items: [
-                  '1',
-                  '2',
-                  '3',
-                  '4',
-                ]
-                    // ignore: non_constant_identifier_names
-                    .map((Frequency) => DropdownMenuItem<String>(
-                          value: Frequency,
-                          child: Text(Frequency),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedfrequency = value; // Dropdown value update
-                  });
-                },
               ),
               SizedBox(height: 25),
               const Text(
@@ -838,7 +988,7 @@ class _EditDoctorDetailsState extends State<EditDoctorDetails> {
                         backgroundColor: Colors.white70,
                         side: BorderSide(color: Colors.black, width: 2),
                         padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 50),
+                            EdgeInsets.symmetric(vertical: 12, horizontal: 45),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),

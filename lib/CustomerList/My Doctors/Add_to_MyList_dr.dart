@@ -69,7 +69,7 @@ class _AddToMylistDrState extends State<AddToMylistDr> {
               height: 2,
             ),
             const SizedBox(height: 16.0),
-            buildSectionTitle('Address 1'),
+            buildSectionSubTitle('Address 1'),
             SizedBox(
               height: 8,
             ),
@@ -286,6 +286,16 @@ class _AddToMylistDrState extends State<AddToMylistDr> {
     );
   }
 
+  Widget buildSectionSubTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
   Widget buildDetailCard(List<Map<String, String>> details) {
     return Card(
       color: Colors.white,
@@ -294,29 +304,44 @@ class _AddToMylistDrState extends State<AddToMylistDr> {
       ),
       elevation: 2.0,
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: details.map((detail) {
+          children: details.asMap().entries.map((entry) {
+            final index = entry.key;
+            final detail = entry.value;
             final key = detail.keys.first;
             final value = detail.values.first;
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    key,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey),
+
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 3.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        key,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      Text(
+                        value,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    value,
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
+                ),
+                // Add Divider except for the last item
+                if (index != details.length - 1) const Divider(),
+              ],
             );
           }).toList(),
         ),
@@ -350,12 +375,12 @@ class _AddToMylistDrState extends State<AddToMylistDr> {
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12.0,
-                    vertical: 6.0,
+                    vertical: 4.0,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
+                    color: Colors.blue.shade50,
                     borderRadius: BorderRadius.circular(20.0),
-                    border: Border.all(color: Colors.blue, width: 2),
+                    border: Border.all(color: Colors.blue.shade50, width: 2),
                   ),
                   child: const Text(
                     'Default',
@@ -367,13 +392,49 @@ class _AddToMylistDrState extends State<AddToMylistDr> {
                 ),
               ],
             ),
-            Text(
-              'Brick: ${address['Brick']}',
-              style: const TextStyle(fontSize: 14.0),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Brick: ',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold, // Style for "Brick"
+                      color: Colors.grey,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${address['Brick']}',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500, // Style for value
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Text(
-              'City: ${address['City']}',
-              style: const TextStyle(fontSize: 14.0),
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'City: ',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold, // Style for "City"
+                      color: Colors.grey,
+                    ),
+                  ),
+                  TextSpan(
+                    text: '${address['City']}',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500, // Style for value
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 8.0),
             Row(

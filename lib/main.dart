@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getpharma/CallReporting/Work%20Plan/Work_Plan.dart';
+import 'package:getpharma/CustomerList/All%20Customers/All_Customers.dart';
 import 'package:getpharma/CustomerList/My%20Doctors/My_Doctors.dart';
 import 'package:getpharma/Expenses/Advances/Advances.dart';
 import 'package:getpharma/Expenses/Reimbursements/Reimbursements.dart';
@@ -21,6 +22,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: WorkPlan(fromButton: false));
+        home: MyDoctors());
   }
 }

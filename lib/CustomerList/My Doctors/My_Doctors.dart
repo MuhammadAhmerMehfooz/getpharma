@@ -135,57 +135,45 @@ class _MyDoctorsState extends State<MyDoctors> {
                 childAspectRatio: 3, // Adjusts the height of the grid items
                 children: [
                   _buildTab(
-                    "My List",
-                    _selectedTab == "My List" ? Colors.blue : Colors.grey[200]!,
-                    _selectedTab == "My List"
-                        ? Colors.white
-                        : Colors.grey.shade800,
-                    () {
-                      setState(() {
-                        _selectedTab = "My List";
-                        _isRequestSelected = false;
-                        _isPendingApproval = false;
-                      });
-                    },
-                    120,
-                    _selectedTab == "My List",
-                  ),
+                      "My List",
+                      _selectedTab == "My List" ? Colors.blue : Colors.white70!,
+                      _selectedTab == "My List"
+                          ? Colors.white
+                          : Colors.grey.shade800, () {
+                    setState(() {
+                      _selectedTab = "My List";
+                      _isRequestSelected = false;
+                      _isPendingApproval = false;
+                    });
+                  }, 120, _selectedTab == "My List", 14),
                   _buildTab(
-                    "My Requests",
-                    _selectedTab == "My Requests"
-                        ? Colors.blue
-                        : Colors.grey[200]!,
-                    _selectedTab == "My Requests"
-                        ? Colors.white
-                        : Colors.grey.shade800,
-                    () {
-                      setState(() {
-                        _selectedTab = "My Requests";
-                        _isRequestSelected = true;
-                        _isPendingApproval = false;
-                      });
-                    },
-                    12,
-                    _selectedTab == "My Requests",
-                  ),
+                      "My Requests",
+                      _selectedTab == "My Requests"
+                          ? Colors.blue
+                          : Colors.white70!,
+                      _selectedTab == "My Requests"
+                          ? Colors.white
+                          : Colors.grey.shade800, () {
+                    setState(() {
+                      _selectedTab = "My Requests";
+                      _isRequestSelected = true;
+                      _isPendingApproval = false;
+                    });
+                  }, 12, _selectedTab == "My Requests", 14),
                   _buildTab(
-                    "Pending For My Approval",
-                    _selectedTab == "Pending For My Approval"
-                        ? Colors.blue
-                        : Colors.grey[200]!,
-                    _selectedTab == "Pending For My Approval"
-                        ? Colors.white
-                        : Colors.grey.shade800,
-                    () {
-                      setState(() {
-                        _selectedTab = "Pending For My Approval";
-                        _isRequestSelected = false;
-                        _isPendingApproval = true;
-                      });
-                    },
-                    12,
-                    _selectedTab == "Pending For My Approval",
-                  ),
+                      "Pending For My Approval",
+                      _selectedTab == "Pending For My Approval"
+                          ? Colors.blue
+                          : Colors.white70!,
+                      _selectedTab == "Pending For My Approval"
+                          ? Colors.white
+                          : Colors.grey.shade800, () {
+                    setState(() {
+                      _selectedTab = "Pending For My Approval";
+                      _isRequestSelected = false;
+                      _isPendingApproval = true;
+                    });
+                  }, 12, _selectedTab == "Pending For My Approval", 14),
                 ],
               ),
             ),
@@ -207,56 +195,57 @@ class _MyDoctorsState extends State<MyDoctors> {
             //     });
             //   },
             // ),
-            SizedBox(
-              height: 10,
-            ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             if (_isRequestSelected) ...[
               // Additional tabs shown only when "My Requests" is selected
               SizedBox(height: 12),
               Row(
                 children: [
-                  SizedBox(width: 20),
+                  SizedBox(width: 11),
                   _buildTab_for_request(
                     "All",
                     _selectedTab == "All" ? Colors.blue : Colors.grey[200]!,
-                    _selectedTab == "All" ? Colors.white : Colors.black,
+                    _selectedTab == "All" ? Colors.white : Colors.grey,
                     () {
                       setState(() {
                         _selectedTab = "All";
                       });
                     },
                   ),
-                  SizedBox(width: 20),
+                  SizedBox(height: 12),
+                  SizedBox(width: 8),
                   _buildTab_for_request(
                     "Pending",
                     _selectedTab == "Pending" ? Colors.blue : Colors.grey[200]!,
-                    _selectedTab == "Pending" ? Colors.white : Colors.black,
+                    _selectedTab == "Pending" ? Colors.white : Colors.grey,
                     () {
                       setState(() {
                         _selectedTab = "Pending";
                       });
                     },
                   ),
-                  SizedBox(width: 20),
+                  SizedBox(width: 8),
                   _buildTab_for_request(
                     "Approved",
                     _selectedTab == "Approved"
                         ? Colors.blue
                         : Colors.grey[200]!,
-                    _selectedTab == "Approved" ? Colors.white : Colors.black,
+                    _selectedTab == "Approved" ? Colors.white : Colors.grey,
                     () {
                       setState(() {
                         _selectedTab = "Approved";
                       });
                     },
                   ),
-                  SizedBox(width: 20),
+                  SizedBox(width: 8),
                   _buildTab_for_request(
                     "Rejected",
                     _selectedTab == "Rejected"
                         ? Colors.blue
                         : Colors.grey[200]!,
-                    _selectedTab == "Rejected" ? Colors.white : Colors.black,
+                    _selectedTab == "Rejected" ? Colors.white : Colors.grey,
                     () {
                       setState(() {
                         _selectedTab = "Rejected";
@@ -266,55 +255,55 @@ class _MyDoctorsState extends State<MyDoctors> {
                 ],
               ),
             ],
-            SizedBox(
-              height: 10,
-            ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             if (_isPendingApproval) ...[
               SizedBox(height: 12),
               Row(
                 children: [
-                  SizedBox(width: 20),
+                  SizedBox(width: 11),
                   _buildTab_for_pending_approval(
                     "All",
                     _selectedTab == "All" ? Colors.blue : Colors.grey[200]!,
-                    _selectedTab == "All" ? Colors.white : Colors.black,
+                    _selectedTab == "All" ? Colors.white : Colors.grey,
                     () {
                       setState(() {
                         _selectedTab = "All";
                       });
                     },
                   ),
-                  SizedBox(width: 20),
+                  SizedBox(width: 8),
                   _buildTab_for_pending_approval(
                     "Pending",
                     _selectedTab == "Pending" ? Colors.blue : Colors.grey[200]!,
-                    _selectedTab == "Pending" ? Colors.white : Colors.black,
+                    _selectedTab == "Pending" ? Colors.white : Colors.grey,
                     () {
                       setState(() {
                         _selectedTab = "Pending";
                       });
                     },
                   ),
-                  SizedBox(width: 20),
+                  SizedBox(width: 8),
                   _buildTab_for_pending_approval(
                     "Approved",
                     _selectedTab == "Approved"
                         ? Colors.blue
                         : Colors.grey[200]!,
-                    _selectedTab == "Approved" ? Colors.white : Colors.black,
+                    _selectedTab == "Approved" ? Colors.white : Colors.grey,
                     () {
                       setState(() {
                         _selectedTab = "Approved";
                       });
                     },
                   ),
-                  SizedBox(width: 20),
+                  SizedBox(width: 8),
                   _buildTab_for_pending_approval(
                     "Rejected",
                     _selectedTab == "Rejected"
                         ? Colors.blue
                         : Colors.grey[200]!,
-                    _selectedTab == "Rejected" ? Colors.white : Colors.black,
+                    _selectedTab == "Rejected" ? Colors.white : Colors.grey,
                     () {
                       setState(() {
                         _selectedTab = "Rejected";
@@ -337,10 +326,10 @@ class _MyDoctorsState extends State<MyDoctors> {
                 },
               ),
             ] else if (_selectedTab == "Pending")
-              ...[
-            ] else if (_selectedTab == "Approved")
-              ...[
-            ] else if (_selectedTab == "Rejected")
+              ...[]
+            else if (_selectedTab == "Approved")
+              ...[]
+            else if (_selectedTab == "Rejected")
               ...[],
 
             if (_selectedTab == "All" && _isPendingApproval == true) ...[
@@ -356,10 +345,10 @@ class _MyDoctorsState extends State<MyDoctors> {
                 },
               ),
             ] else if (_selectedTab == "Pending")
-              ...[
-            ] else if (_selectedTab == "Approved")
-              ...[
-            ] else if (_selectedTab == "Rejected")
+              ...[]
+            else if (_selectedTab == "Approved")
+              ...[]
+            else if (_selectedTab == "Rejected")
               ...[],
 
             SizedBox(height: 10),
@@ -435,7 +424,7 @@ class _MyDoctorsState extends State<MyDoctors> {
   /////////////////////////////////////// BUILDS CARDS /////////////////////////////////////////////////////////////
 
   Widget _buildTab(String title, Color bgColor, Color textColor, Function onTap,
-      int count, bool isSelected) {
+      int count, bool isSelected, double fontSize) {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
@@ -449,9 +438,9 @@ class _MyDoctorsState extends State<MyDoctors> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
-              radius: 20, // Size of the avatar
+              radius: 15, // Size of the avatar
               backgroundColor: isSelected
-                  ? Colors.blue.shade700
+                  ? Colors.white30
                   : Colors.blue.shade50, // Background color of the avatar
               child: Text(
                 '$count', // Display the count
@@ -459,8 +448,8 @@ class _MyDoctorsState extends State<MyDoctors> {
                   color: isSelected
                       ? Colors.white
                       : Colors.black, // Matches the background color of the tab
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
                 ),
               ),
             ),
@@ -488,15 +477,19 @@ class _MyDoctorsState extends State<MyDoctors> {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         decoration: BoxDecoration(
-          color: bgColor,
           borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+              color: Colors.grey, // Border color based on selection
+              width: 1.0 // Border width
+              ),
+          color: bgColor,
+          //borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
           title,
-          style: TextStyle(
-              color: textColor, fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(color: textColor, fontSize: 16),
         ),
       ),
     );
@@ -507,15 +500,18 @@ class _MyDoctorsState extends State<MyDoctors> {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
         decoration: BoxDecoration(
-          color: bgColor,
           borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+              color: Colors.grey, // Border color based on selection
+              width: 1.0 // Border width
+              ),
+          color: bgColor,
         ),
         child: Text(
           title,
-          style: TextStyle(
-              color: textColor, fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(color: textColor, fontSize: 16),
         ),
       ),
     );
@@ -561,7 +557,7 @@ class _MyDoctorsState extends State<MyDoctors> {
                             "No. $index",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                                fontSize: 13,
                                 color: Colors.grey),
                           ),
                           Container(
@@ -587,15 +583,18 @@ class _MyDoctorsState extends State<MyDoctors> {
                       Text(
                         doctor['name']!,
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           fontSize: 16,
                         ),
                       ),
                       Text(
                         doctor['specialty']!,
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.grey, fontSize: 13),
                       ),
-                      Text(doctor['contact']!),
+                      Text(
+                        doctor['contact']!,
+                        style: TextStyle(fontWeight: FontWeight.w400),
+                      ),
                     ],
                   ),
                 ),
@@ -610,7 +609,7 @@ class _MyDoctorsState extends State<MyDoctors> {
             SizedBox(height: 10),
             // Buttons
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 OutlinedButton(
                   onPressed: () {
@@ -621,11 +620,11 @@ class _MyDoctorsState extends State<MyDoctors> {
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 35),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    side: BorderSide(color: Colors.red, width: 2),
+                    side: BorderSide(color: Colors.red, width: 1),
                   ),
                   child: Row(
                     children: [
@@ -642,12 +641,12 @@ class _MyDoctorsState extends State<MyDoctors> {
                     ],
                   ),
                 ),
-                SizedBox(width: 5),
+                SizedBox(width: 8),
                 OutlinedButton(
                   onPressed: () {},
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.teal[800],
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -661,7 +660,7 @@ class _MyDoctorsState extends State<MyDoctors> {
                       ),
                       SizedBox(width: 8),
                       Text(
-                        "Add Location",
+                        "Edit Details",
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -713,13 +712,12 @@ class _MyDoctorsState extends State<MyDoctors> {
                           Text(
                             doctor['name']!,
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               fontSize: 16,
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
+                            padding: EdgeInsets.symmetric(horizontal: 12),
                             decoration: BoxDecoration(
                               color: Colors.orange[100],
                               borderRadius: BorderRadius.circular(
@@ -729,8 +727,9 @@ class _MyDoctorsState extends State<MyDoctors> {
                               'Pending', // Handle null value
                               style: TextStyle(
                                 fontSize: 14,
+                                fontWeight: FontWeight.bold,
                                 color: Colors
-                                    .orange[900], // You can change the color
+                                    .orange[400], // You can change the color
                               ),
                             ),
                           ),
@@ -742,9 +741,10 @@ class _MyDoctorsState extends State<MyDoctors> {
                       ),
                       Text(
                         doctor['specialty']!,
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.grey, fontSize: 13),
                       ),
-                      Text(doctor['contact']!),
+                      Text(doctor['contact']!,
+                          style: TextStyle(fontWeight: FontWeight.w400)),
                     ],
                   ),
                 ),
@@ -762,16 +762,16 @@ class _MyDoctorsState extends State<MyDoctors> {
                 Text(
                   'Pending Approval:',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
                     color: Colors.grey,
                   ),
                 ),
                 Text(
                   'Last Approval:',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
                     color: Colors.grey,
                   ),
                 ),
@@ -783,7 +783,7 @@ class _MyDoctorsState extends State<MyDoctors> {
                 Text(
                   'SFE',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     fontSize: 14,
                     color: Colors.red,
                   ),
@@ -791,14 +791,13 @@ class _MyDoctorsState extends State<MyDoctors> {
                 Text(
                   'SM - Asad Baig',
                   style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
                     color: Colors.blue,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -822,7 +821,7 @@ class _MyDoctorsState extends State<MyDoctors> {
     return Card(
       elevation: 6,
       color: Colors.white,
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: EdgeInsets.symmetric(horizontal: 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -856,15 +855,14 @@ class _MyDoctorsState extends State<MyDoctors> {
                           Text(
                             doctor['name']!,
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                               fontSize: 16,
                             ),
                           ),
                           Row(
                             children: [
                               Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 6),
+                                padding: EdgeInsets.symmetric(horizontal: 12),
                                 decoration: BoxDecoration(
                                   color: Colors.orange[100],
                                   borderRadius: BorderRadius.circular(
@@ -873,16 +871,16 @@ class _MyDoctorsState extends State<MyDoctors> {
                                 child: Text(
                                   'Pending', // Handle null value
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
                                     color: Colors.orange[
-                                        900], // You can change the color
+                                        400], // You can change the color
                                   ),
                                 ),
                               ),
                               SizedBox(width: 5),
                               Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 4),
+                                padding: EdgeInsets.symmetric(horizontal: 8),
                                 decoration: BoxDecoration(
                                   color: Colors.blue[100],
                                   borderRadius: BorderRadius.circular(30),
@@ -892,6 +890,7 @@ class _MyDoctorsState extends State<MyDoctors> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.blue[900],
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -905,9 +904,10 @@ class _MyDoctorsState extends State<MyDoctors> {
                       ),
                       Text(
                         doctor['specialty']!,
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.grey, fontSize: 13),
                       ),
-                      Text(doctor['contact']!),
+                      Text(doctor['contact']!,
+                          style: TextStyle(fontWeight: FontWeight.w400)),
                     ],
                   ),
                 ),
@@ -918,23 +918,23 @@ class _MyDoctorsState extends State<MyDoctors> {
               color: Colors.grey,
               thickness: 1,
             ),
-            SizedBox(height: 10),
+            //SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Pending Approval:',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
                     color: Colors.grey,
                   ),
                 ),
                 Text(
                   'Last Approval:',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
                     color: Colors.grey,
                   ),
                 ),
@@ -946,7 +946,7 @@ class _MyDoctorsState extends State<MyDoctors> {
                 Text(
                   'SFE',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     fontSize: 14,
                     color: Colors.red,
                   ),
@@ -954,21 +954,21 @@ class _MyDoctorsState extends State<MyDoctors> {
                 Text(
                   'SM - Asad Baig',
                   style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
                     color: Colors.blue,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            //SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
                   '09 Sep 2024 - 08:25 Pm',
                   style: TextStyle(
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w500,
                     fontSize: 14,
                     color: Colors.blue,
                   ),

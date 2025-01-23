@@ -75,31 +75,40 @@ class _SearchDoctorState extends State<SearchDoctor> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Name',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    'Name',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
                 ),
                 SizedBox(
-                  height: 12,
+                  height: 5,
                 ),
                 // Name field
-                TextField(
-                  cursorColor: Colors.blue,
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    labelText: 'Name',
-                    labelStyle:
-                        TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2),
-                      borderRadius: BorderRadius.circular(10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: SizedBox(
+                    width: 320,
+                    child: TextField(
+                      cursorColor: Colors.blue,
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        labelText: 'Name',
+                        labelStyle:
+                            TextStyle(color: Colors.grey[600], fontSize: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Colors.blue, width: 2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -130,95 +139,122 @@ class _SearchDoctorState extends State<SearchDoctor> {
                   height: 8,
                 ),
 
-                Text(
-                  'CNIC Number',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-
-                TextField(
-                  cursorColor: Colors.blue,
-                  controller: cnicController,
-                  decoration: InputDecoration(
-                    labelText: 'CNIC Number',
-                    labelStyle:
-                        TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    'CNIC Number',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
                   ),
-                  keyboardType: TextInputType.number,
-                ),
-
-                SizedBox(height: 10),
-                Text(
-                  'PMDC Number',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
 
-                TextField(
-                  cursorColor: Colors.blue,
-                  controller: pmdcController,
-                  decoration: InputDecoration(
-                    labelText: 'PMDC Number',
-                    labelStyle:
-                        TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2),
-                      borderRadius: BorderRadius.circular(10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: SizedBox(
+                    width: 320,
+                    child: TextField(
+                      cursorColor: Colors.blue,
+                      controller: cnicController,
+                      decoration: InputDecoration(
+                        labelText: 'CNIC Number',
+                        labelStyle:
+                            TextStyle(color: Colors.grey[600], fontSize: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Colors.blue, width: 2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      keyboardType: TextInputType.number,
                     ),
                   ),
                 ),
 
                 SizedBox(height: 10),
-                Text(
-                  'Phone Number',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    'PMDC Number',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
 
-                TextField(
-                  cursorColor: Colors.blue,
-                  controller: phoneController,
-                  decoration: InputDecoration(
-                    labelText: 'Phone Number',
-                    labelStyle:
-                        TextStyle(color: Colors.grey.shade900, fontSize: 14),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2),
-                      borderRadius: BorderRadius.circular(10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: SizedBox(
+                    width: 320,
+                    child: TextField(
+                      cursorColor: Colors.blue,
+                      controller: pmdcController,
+                      decoration: InputDecoration(
+                        labelText: 'PMDC Number',
+                        labelStyle:
+                            TextStyle(color: Colors.grey[600], fontSize: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Colors.blue, width: 2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     ),
                   ),
-                  keyboardType: TextInputType.phone,
+                ),
+
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    'Phone Number',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: SizedBox(
+                    width: 320,
+                    child: TextField(
+                      cursorColor: Colors.blue,
+                      controller: phoneController,
+                      decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        labelStyle:
+                            TextStyle(color: Colors.grey[600], fontSize: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              const BorderSide(color: Colors.blue, width: 2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      keyboardType: TextInputType.phone,
+                    ),
+                  ),
                 ),
                 SizedBox(height: 30),
 
@@ -321,7 +357,7 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index, context) {
   return Card(
     elevation: 8,
     color: Colors.white,
-    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    margin: EdgeInsets.symmetric(horizontal: 3, vertical: 5),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     child: Padding(
       padding: const EdgeInsets.all(10.0),
@@ -389,7 +425,7 @@ Widget _buildDoctorCard(Map<String, String> doctorList, int index, context) {
                 },
                 style: OutlinedButton.styleFrom(
                   backgroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),

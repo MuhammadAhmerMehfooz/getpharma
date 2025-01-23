@@ -104,33 +104,34 @@ class _AllCustomersState extends State<AllCustomers> {
               height: 14,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
+                      SizedBox(
+                        width: 3,
+                      ),
                       _buildTab(
                         "Chemists",
                         _selectedTab == "Chemists"
                             ? Colors.blue
                             : Colors.grey[200]!,
-                        _selectedTab == "Chemists"
-                            ? Colors.white
-                            : Colors.black,
+                        _selectedTab == "Chemists" ? Colors.white : Colors.grey,
                         () {
                           setState(() {
                             _selectedTab = "Chemists";
                           });
                         },
                       ),
-                      SizedBox(width: 12),
+                      SizedBox(width: 10),
                       _buildTab(
                         "Doctors",
                         _selectedTab == "Doctors"
                             ? Colors.blue
                             : Colors.grey[200]!,
-                        _selectedTab == "Doctors" ? Colors.white : Colors.black,
+                        _selectedTab == "Doctors" ? Colors.white : Colors.grey,
                         () {
                           setState(() {
                             _selectedTab = "Doctors";
@@ -145,7 +146,7 @@ class _AllCustomersState extends State<AllCustomers> {
                             : Colors.grey[200]!,
                         _selectedTab == "Distributers"
                             ? Colors.white
-                            : Colors.black,
+                            : Colors.grey,
                         () {
                           setState(() {
                             _selectedTab = "Distributers";
@@ -175,7 +176,7 @@ class _AllCustomersState extends State<AllCustomers> {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(20),
@@ -183,7 +184,7 @@ class _AllCustomersState extends State<AllCustomers> {
         child: Text(
           title,
           style: TextStyle(
-              color: textColor, fontWeight: FontWeight.bold, fontSize: 16),
+              color: textColor, fontWeight: FontWeight.w400, fontSize: 16),
         ),
       ),
     );
@@ -193,7 +194,7 @@ class _AllCustomersState extends State<AllCustomers> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(6.0),
           child: TextField(
             cursorColor: Colors.blue,
             decoration: InputDecoration(
@@ -201,19 +202,20 @@ class _AllCustomersState extends State<AllCustomers> {
               filled: true,
               labelText: 'City',
               labelStyle:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.blue, width: 2),
+                borderSide: const BorderSide(color: Colors.white, width: 1),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(6.0),
           child: TextField(
             cursorColor: Colors.blue,
             decoration: InputDecoration(
@@ -221,19 +223,20 @@ class _AllCustomersState extends State<AllCustomers> {
               filled: true,
               labelText: 'Qualification',
               labelStyle:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.blue, width: 2),
+                borderSide: const BorderSide(color: Colors.white, width: 1),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(6.0),
           child: TextField(
             keyboardType: TextInputType.number,
             cursorColor: Colors.blue,
@@ -242,19 +245,20 @@ class _AllCustomersState extends State<AllCustomers> {
               filled: true,
               labelText: 'PMDC No',
               labelStyle:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.blue, width: 2),
+                borderSide: const BorderSide(color: Colors.white, width: 1),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(6.0),
           child: TextField(
             cursorColor: Colors.blue,
             decoration: InputDecoration(
@@ -262,12 +266,13 @@ class _AllCustomersState extends State<AllCustomers> {
               filled: true,
               labelText: 'Designation',
               labelStyle:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.blue, width: 2),
+                borderSide: const BorderSide(color: Colors.white, width: 1),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -331,7 +336,8 @@ class _AllCustomersState extends State<AllCustomers> {
                             "No. $index",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 13,
+                              color: Colors.grey,
                             ),
                           ),
                           Container(
@@ -357,15 +363,18 @@ class _AllCustomersState extends State<AllCustomers> {
                       Text(
                         doctor['name']!,
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           fontSize: 16,
                         ),
                       ),
                       Text(
                         doctor['specialty']!,
-                        style: TextStyle(color: Colors.grey),
+                        style: TextStyle(color: Colors.grey, fontSize: 13),
                       ),
-                      Text(doctor['contact']!),
+                      Text(
+                        doctor['contact']!,
+                        style: TextStyle(fontWeight: FontWeight.w400),
+                      )
                     ],
                   ),
                 ),
