@@ -81,7 +81,7 @@ class ApprovalDetailsScreen extends StatelessWidget {
                 child: DataTable(
                   columnSpacing: 20,
                   headingRowColor:
-                      MaterialStateProperty.all(Colors.deepPurple[50]),
+                      MaterialStateProperty.all(Colors.blue[50]),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: const [
                     DataColumn(
@@ -130,7 +130,19 @@ class ApprovalDetailsScreen extends StatelessWidget {
                             DataCell(Text(data["designation"]!)),
                             DataCell(Text(data["date"]!)),
                             DataCell(Text(data["Status"]!)),
-                            DataCell(Text(data["Pending"]!)),
+                            DataCell(
+                              Container(
+                              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
+                                color: Colors.orange.shade50,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                data["Pending"]!,
+                                style: TextStyle(color: Colors.deepOrange.shade900),
+                              ),
+                              ),
+                            ),
                           ],
                         ),
                       )

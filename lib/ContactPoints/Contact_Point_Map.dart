@@ -20,11 +20,7 @@ class _ContactPointMapState extends State<ContactPointMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        // title: Text('Morning Contact Point'),
-        centerTitle: true,
-      ),
+      
       body: Column(
         children: [
           Expanded(
@@ -113,75 +109,75 @@ class _ContactPointMapState extends State<ContactPointMap> {
                 ),
                 SizedBox(height: 20),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    OutlinedButton(
-                      onPressed: () {
-                        _showManualDialog(context);
-                        setState(() {
-                          _selectedButton = 'Set Manually';
-                        });
-                      },
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: _selectedButton == 'Set Manually'
-                            ? Colors.blue
-                            : Colors.white,
-                        side: BorderSide(
-                            color: _selectedButton == 'Set Manually'
-                                ? Colors.blue
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    Expanded(
+      child: OutlinedButton(
+        onPressed: () {
+          _showManualDialog(context);
+          setState(() {
+            _selectedButton = 'Set Manually';
+          });
+        },
+        style: OutlinedButton.styleFrom(
+          backgroundColor:
+              _selectedButton == 'Set Manually' ? Colors.blue : Colors.white,
+          side: BorderSide(
+            color: _selectedButton == 'Set Manually' ? Colors.blue : Colors.black,
+            width: 2,
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        child: Text(
+          'Set Manually',
+          style: TextStyle(
+            color: _selectedButton == 'Set Manually'
+                                ? Colors.white
                                 : Colors.black,
-                            width: 2),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 30),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: Text(
-                        'Set Manually',
-                        style: TextStyle(
-                          color: _selectedButton == 'Set Manually'
-                              ? Colors.white
-                              : Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        setState(() {
-                          _selectedButton = 'Confirm';
-                        });
-                      },
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: _selectedButton == 'Confirm'
-                            ? Colors.blue
-                            : Colors.white,
-                        side: BorderSide(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ),
+    const SizedBox(width: 8), // Spacing between buttons
+    Expanded(
+      child: OutlinedButton(
+        onPressed: () {
+          setState(() {
+            _selectedButton = 'Confirm';
+          });
+        },
+        style: OutlinedButton.styleFrom(
+          backgroundColor:
+              _selectedButton == 'Confirm' ? Colors.blue : Colors.white,
+          side: BorderSide(
+            color: _selectedButton == 'Confirm' ? Colors.blue : Colors.black,
+            width: 2,
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        child: Text(
+          'Confirm',
+          style: TextStyle(
                             color: _selectedButton == 'Confirm'
-                                ? Colors.blue
+                                ? Colors.white
                                 : Colors.black,
-                            width: 2),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 50),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      child: Text(
-                        'Confirm',
-                        style: TextStyle(
-                          color: _selectedButton == 'Confirm'
-                              ? Colors.white
-                              : Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ),
+  ],
+),
               ],
             ),
           ),
@@ -430,21 +426,26 @@ class _ContactPointMapState extends State<ContactPointMap> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue, // Button color
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue, // Button colors
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
-                  ),
-                  child: Text(
-                    ' Submit Request for approval',
-                    style: TextStyle(color: Colors.white),
+                    child: const Text(
+                      'Submit Request for Approval',
+                      style: TextStyle(color: Colors.white),
+                      overflow: TextOverflow.ellipsis, 
+                    ),
                   ),
                 ),
               ],
             ),
+
             SizedBox(
               height: 4,
             ),

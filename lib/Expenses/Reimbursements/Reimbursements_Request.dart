@@ -84,7 +84,7 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
             ),
             Text(
               'Reimbursements Request',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ],
         ),
@@ -109,18 +109,18 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                 height: 15,
               ),
               DropdownButtonFormField<String>(
+                icon: Icon(Icons
+                    .keyboard_arrow_down_rounded), // Custom down arrow icon
                 value: selectedGender,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   labelText: 'Expense Head',
                   labelStyle:
                       TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10)),
                 ),
                 items: ['Marketing Expense', 'Selling Expense']
                     .map((gender) => DropdownMenuItem<String>(
@@ -148,18 +148,17 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
 
               // Activity Dropdown
               DropdownButtonFormField<String>(
+                icon: Icon(Icons.keyboard_arrow_down_rounded), // Custom down arrow icon
                 value: selectedGender,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   labelText: 'Activity',
                   labelStyle:
                       TextStyle(color: Colors.grey.shade900, fontSize: 14),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(10)),
                 ),
                 items: ['Team Refreshments', 'Team Gathering']
                     .map((gender) => DropdownMenuItem<String>(
@@ -190,6 +189,8 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                 controller: _dateController,
                 readOnly: true,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   labelText: 'Activity Date',
                   labelStyle:
                       TextStyle(color: Colors.grey.shade900, fontSize: 14),
@@ -198,11 +199,8 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                     onPressed: () => _selectDate(context),
                   ),
                   border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(10)),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
                 ),
                 onTap: () => _selectDate(context),
               ),
@@ -222,7 +220,6 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                elevation: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -301,7 +298,7 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                                     '10000',
                                     style: TextStyle(
                                       fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w500,
                                       color: Colors.black,
                                     ),
                                   ),
@@ -352,7 +349,7 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                                     '2600',
                                     style: TextStyle(
                                       fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w500,
                                       color: Colors.black,
                                     ),
                                   ),
@@ -425,7 +422,7 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
               // Uploaded File Card
               ListView.builder(
                 shrinkWrap: true,
@@ -476,22 +473,21 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
                     fontSize: 20),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               TextField(
                 cursorColor: Colors.blue,
                 maxLines: 5,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
                   ),
                   alignLabelWithHint: true,
                   hintText: 'Enter a detailed description...',
@@ -503,7 +499,7 @@ class _ReimbursementsRequestState extends State<ReimbursementsRequest> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                     showDialog(
+                    showDialog(
                       context: context,
                       builder: (context) => CustomAlert(
                         text:

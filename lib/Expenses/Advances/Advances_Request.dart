@@ -65,7 +65,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
             ),
             Text(
               'Advances Request',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ],
         ),
@@ -89,7 +89,13 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
               SizedBox(
                 height: 10,
               ),
-              TextField(
+                Container(
+                  decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                  style: TextStyle(backgroundColor: Colors.white),
                 readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Expense Head',
@@ -98,14 +104,12 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                     fontSize: 14,
                   ),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
                 ),
               ),
+            ),
 
               SizedBox(height: 28),
 
@@ -131,7 +135,6 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          elevation: 2,
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 16.0, vertical: 10.0),
@@ -140,7 +143,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                                   Text(
                                     '05/10/2025',
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black,
                                     ),
@@ -172,7 +175,6 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          elevation: 2,
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 16.0, vertical: 10.0),
@@ -181,7 +183,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                                   Text(
                                     '07/10/2025',
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black,
                                     ),
@@ -216,7 +218,6 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                elevation: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -235,7 +236,8 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             isDense: true,
-                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
                             contentPadding:
                                 const EdgeInsets.symmetric(vertical: 8),
                           ),
@@ -311,7 +313,7 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                   ),
                 ),
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
               // Uploaded File Card
               ListView.builder(
                 shrinkWrap: true,
@@ -362,23 +364,23 @@ class _AdvancesRequestState extends State<AdvancesRequest> {
                     fontSize: 18),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               TextField(
+                
                 cursorColor: Colors.blue,
                 maxLines: 5,
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
-                  border: OutlineInputBorder(
+                    border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                    borderSide: BorderSide.none,
+                    ),
                   alignLabelWithHint: true,
                   hintText: 'Enter a detailed description...',
                 ),

@@ -10,7 +10,7 @@ class Settlements extends StatefulWidget {
 }
 
 class _SettlementsState extends State<Settlements> {
-  String _selectedTab = "Settlements";
+  String _selectedTab = "My Settlements";
   bool _isSettlements = true;
   String _selectedsubTabs = 'Pending';
   bool showCheckBox = false;
@@ -122,7 +122,7 @@ class _SettlementsState extends State<Settlements> {
     });
   }
 
-   int _getSelectedItemsCount() {
+  int _getSelectedItemsCount() {
     return selectedItems.values.where((isSelected) => isSelected).length;
   }
 
@@ -147,7 +147,7 @@ class _SettlementsState extends State<Settlements> {
             ),
             Text(
               'Settlements',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ],
         ),
@@ -191,8 +191,9 @@ class _SettlementsState extends State<Settlements> {
                           if (_getSelectedItemsCount() > 1) {
                             showDialog(
                               context: context,
-                               builder: (context) => CustomAlert(
-                                text: "Multiple Requests cannot be rejected simultaneously",
+                              builder: (context) => CustomAlert(
+                                text:
+                                    "Multiple Requests cannot be rejected simultaneously",
                                 type: "error",
                               ),
                             );
@@ -262,8 +263,9 @@ class _SettlementsState extends State<Settlements> {
   }
 
   Widget _buildSearchBar() {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.all(10.0),
+      color: Colors.white,
       child: Row(
         children: [
           Expanded(
@@ -272,7 +274,7 @@ class _SettlementsState extends State<Settlements> {
               decoration: InputDecoration(
                 hintText: 'Search Here',
                 hintStyle: const TextStyle(
-                    fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                    fontWeight: FontWeight.w500, color: Colors.blueGrey),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide.none,
@@ -298,11 +300,11 @@ class _SettlementsState extends State<Settlements> {
           Expanded(
             child: _buildTab(
               "My Settlements",
-              _selectedTab == "Settlements" ? Colors.blue : Colors.grey[200]!,
-              _selectedTab == "Settlements" ? Colors.white : Colors.black,
+              _selectedTab == "My Settlements" ? Colors.blue : Colors.white,
+              _selectedTab == "My Settlements" ? Colors.white : Colors.black,
               () {
                 setState(() {
-                  _selectedTab = "Settlements";
+                  _selectedTab = "My Settlements";
                   _isSettlements = true;
                   showCheckBox = false;
                   selectedItems.clear();
@@ -312,13 +314,13 @@ class _SettlementsState extends State<Settlements> {
               badgeCount: 4,
             ),
           ),
-          const SizedBox(width: 8), // Adjust spacing as needed
+          const SizedBox(width: 8),
           Expanded(
             child: _buildTab(
               "Pending For My Approval",
               _selectedTab == "Pending For My Approval"
                   ? Colors.blue
-                  : Colors.grey[200]!,
+                  : Colors.white,
               _selectedTab == "Pending For My Approval"
                   ? Colors.white
                   : Colors.black,
@@ -386,56 +388,65 @@ class _SettlementsState extends State<Settlements> {
 
   Widget _buildReimbursementTabs() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-      // padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 14),
       decoration: BoxDecoration(
-        color: Colors.white, // Background color for the container
-        borderRadius:
-            BorderRadius.circular(30), // Rounded corners for the container
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(color: Colors.grey.shade300),
       ),
       child: Row(
-        mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly, // Evenly space the tabs
         children: [
-          _buildTabForReimbursements(
-            "Pending",
-            _selectedsubTabs == "Pending" ? Colors.blue : Colors.white,
-            _selectedsubTabs == "Pending" ? Colors.white : Colors.black,
-            () {
-              setState(() {
-                _selectedsubTabs = "Pending";
-              });
-            },
+          // Pending Tab
+          Expanded(
+            child: _buildTabForReimbursements(
+              "Pending",
+              _selectedsubTabs == "Pending" ? Colors.blue : Colors.white,
+              _selectedsubTabs == "Pending" ? Colors.white : Colors.black,
+              () {
+                setState(() {
+                  _selectedsubTabs = "Pending";
+                });
+              },
+            ),
           ),
-          _buildTabForReimbursements(
-            "Approved",
-            _selectedsubTabs == "Approved" ? Colors.blue : Colors.white,
-            _selectedsubTabs == "Approved" ? Colors.white : Colors.black,
-            () {
-              setState(() {
-                _selectedsubTabs = "Approved";
-              });
-            },
+          // Approved Tab
+          Expanded(
+            child: _buildTabForReimbursements(
+              "Approved",
+              _selectedsubTabs == "Approved" ? Colors.blue : Colors.white,
+              _selectedsubTabs == "Approved" ? Colors.white : Colors.black,
+              () {
+                setState(() {
+                  _selectedsubTabs = "Approved";
+                });
+              },
+            ),
           ),
-          _buildTabForReimbursements(
-            "Rework",
-            _selectedsubTabs == "Rework" ? Colors.blue : Colors.white,
-            _selectedsubTabs == "Rework" ? Colors.white : Colors.black,
-            () {
-              setState(() {
-                _selectedsubTabs = "Rework";
-              });
-            },
+          // Rework Tab
+          Expanded(
+            child: _buildTabForReimbursements(
+              "Rework",
+              _selectedsubTabs == "Rework" ? Colors.blue : Colors.white,
+              _selectedsubTabs == "Rework" ? Colors.white : Colors.black,
+              () {
+                setState(() {
+                  _selectedsubTabs = "Rework";
+                });
+              },
+            ),
           ),
-          _buildTabForReimbursements(
-            "Settled",
-            _selectedsubTabs == "Settled" ? Colors.blue : Colors.white,
-            _selectedsubTabs == "Settled" ? Colors.white : Colors.black,
-            () {
-              setState(() {
-                _selectedsubTabs = "Settled";
-              });
-            },
+          // Settled Tab
+          Expanded(
+            child: _buildTabForReimbursements(
+              "Settled",
+              _selectedsubTabs == "Settled" ? Colors.blue : Colors.white,
+              _selectedsubTabs == "Settled" ? Colors.white : Colors.black,
+              () {
+                setState(() {
+                  _selectedsubTabs = "Settled";
+                });
+              },
+            ),
           ),
         ],
       ),
@@ -464,13 +475,13 @@ class _SettlementsState extends State<Settlements> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.orange.shade100, // Background color
+                      color: Colors.orange.shade50,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       item['status'] ?? 'Status',
                       style: TextStyle(
-                        backgroundColor: Colors.orange.shade100,
+                        backgroundColor: Colors.orange.shade50,
                         fontSize: 12,
                         color: Colors.orange.shade900, // Text color
                         fontWeight: FontWeight.w500,
@@ -481,27 +492,48 @@ class _SettlementsState extends State<Settlements> {
               ),
               Text(
                 item['name'] ?? 'Name',
-                style: TextStyle(fontWeight: FontWeight.w600),
+                style: TextStyle(fontWeight: FontWeight.w500),
               ),
+              const SizedBox(height: 4),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text("Submission Date:\n04-Sep-2024"),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Submission Date:",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      Text(
+                        item['date'] ?? 'Date',
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey[900]),
+                      ),
+                    ],
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "Amount Claimed:",
+                        "Amount Requested:",
                         style: TextStyle(
-                            fontWeight: FontWeight.w200,
-                            color: Colors.grey[900]),
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey[600],
+                        ),
                       ),
                       Text(
                         item['amount'] ?? 'Amount',
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.green[800]),
+                            color: Colors.grey[900]),
                       ),
                     ],
                   ),
@@ -510,12 +542,16 @@ class _SettlementsState extends State<Settlements> {
               const SizedBox(height: 10),
               const Divider(),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Pending Approval",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey[900])),
+                  Text(
+                    "Pending Approval:",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey[600],
+                    ),
+                  ),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -525,9 +561,13 @@ class _SettlementsState extends State<Settlements> {
                         ),
                       );
                     },
-                    child: Text("Last Approval",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, color: Colors.grey)),
+                    child: Text(
+                      "Last Approved:",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey[600],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -627,13 +667,13 @@ class _SettlementsState extends State<Settlements> {
                                   horizontal: 12, vertical: 4),
                               decoration: BoxDecoration(
                                 color:
-                                    Colors.orange.shade100, // Background color
+                                    Colors.orange.shade50, // Background color
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
                                 item['status'] ?? 'Pending',
                                 style: TextStyle(
-                                  backgroundColor: Colors.orange.shade100,
+                                  backgroundColor: Colors.orange.shade50,
                                   fontSize: 12,
                                   color: Colors.orange.shade900, // Text color
                                   fontWeight: FontWeight.w500,
@@ -645,16 +685,18 @@ class _SettlementsState extends State<Settlements> {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
                               decoration: BoxDecoration(
-                                color:
-                                    Colors.green.shade100, // Background color
+                                color: item['update'] == 'Read'
+                                    ? Colors.blue.shade50
+                                    : Colors.green.shade50, // Background color
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
                                 item['update'] ?? 'Read',
                                 style: TextStyle(
-                                  backgroundColor: Colors.green.shade100,
                                   fontSize: 12,
-                                  color: Colors.green.shade800, // Text color
+                                  color: item['update'] == 'Read'
+                                      ? Colors.blue.shade900
+                                      : Colors.green.shade900, // Text color
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -669,28 +711,46 @@ class _SettlementsState extends State<Settlements> {
                       style:
                           TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
                     ),
+                    SizedBox(height: 4),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "Submission Date:\n04-Sep-2024",
-                          style: TextStyle(fontSize: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Submission Date:",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                            Text(
+                              item['date'] ?? 'Date',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey[900]),
+                            ),
+                          ],
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "Amount Claimed:",
+                              "Amount Requested:",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w200,
-                                  color: Colors.grey[900]),
+                                fontWeight: FontWeight.w400,
+                                color: Colors.grey[600],
+                              ),
                             ),
                             Text(
                               item['amount'] ?? 'Amount',
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.green[800]),
+                                  color: Colors.grey[900]),
                             ),
                           ],
                         ),
@@ -716,18 +776,16 @@ class _SettlementsState extends State<Settlements> {
   }) {
     return GestureDetector(
       onTap: () {
-        onTap(); // Call the onTap function passed to the widget
+        onTap();
       },
       child: Container(
-        width: 172, // Set a fixed width for the container
-        height: 65, // Set the same height for the container
+        width: 172,
+        height: 65,
         decoration: BoxDecoration(
-          color: isSelected
-              ? Colors.blue
-              : bgColor, // Use bgColor passed to the widget
+          color: isSelected ? Colors.blue : bgColor,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isSelected ? Colors.blue : Colors.grey,
+            color: isSelected ? Colors.blue : Colors.white,
           ),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
@@ -737,30 +795,30 @@ class _SettlementsState extends State<Settlements> {
           children: [
             if (badgeCount != null)
               CircleAvatar(
-                radius: 20, // Size of the avatar
-                backgroundColor: isSelected
-                    ? Colors.blue.shade700
-                    : Colors.blue.shade50, // Background color of the avatar
+                radius: 20,
+                backgroundColor: _selectedTab == title
+                    ? Colors.blue.shade400
+                    : Colors.blue.shade50,
                 child: Text(
                   badgeCount.toString(),
                   style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.black,
+                    color: _selectedTab == title ? Colors.white : Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                   ),
                 ),
               ),
-            if (badgeCount != null) const SizedBox(width: 8),
+            if (badgeCount != null) const SizedBox(width: 6),
             Flexible(
               child: Text(
                 title,
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  color: textColor, // Use the passed textColor
-                  fontSize: 13,
+                  color: textColor,
+                  fontSize: 12,
                 ),
-                overflow: TextOverflow.visible, // Allow text to wrap
-                softWrap: true, // Enable wrapping
+                overflow: TextOverflow.visible,
+                softWrap: true,
               ),
             ),
           ],
@@ -774,14 +832,18 @@ class _SettlementsState extends State<Settlements> {
     return GestureDetector(
       onTap: () => onTap(),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(30),
         ),
-        child: Text(
-          title,
-          style: TextStyle(color: textColor, fontSize: 14),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            title,
+            style: TextStyle(color: textColor, fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

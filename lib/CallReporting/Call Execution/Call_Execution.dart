@@ -253,80 +253,94 @@ class _CallExecutionState extends State<CallExecution> {
             const SizedBox(height: 16),
 
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.orange,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                Expanded(
+                  child: Container(
+                    margin:
+                        const EdgeInsets.all(4), // Optional margin for spacing
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
                       ),
-                      minimumSize: const Size(150, 50),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ContactPointMap()),
-                      );
-                    },
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                          size: 20,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        SizedBox(width: 8),
-                        Text('Contact Point'),
-                      ],
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ContactPointMap()),
+                        );
+                      },
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8),
+                          Text('Contact Point'),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                Expanded(
+                  child: Container(
+                    margin:
+                        const EdgeInsets.all(4), // Optional margin for spacing
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
                       ),
-                      minimumSize: const Size(180, 50),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    onPressed: () {},
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.shopping_bag,
-                          color: Colors.white,
-                          size: 20,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        SizedBox(width: 8),
-                        Text('Working'),
-                      ],
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) =>
+                              _buildWorkingStatusDialog(context),
+                        );
+                      },
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.shopping_bag,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8),
+                          Text('Working'),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
+
             const SizedBox(
               height: 14,
             ),
@@ -480,7 +494,6 @@ class _CallExecutionState extends State<CallExecution> {
                   height: 18,
                 ),
 
-                // Summary Row
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize
@@ -780,7 +793,7 @@ class _CallExecutionState extends State<CallExecution> {
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -807,7 +820,7 @@ class _CallExecutionState extends State<CallExecution> {
                           color: Colors.grey,
                           fontWeight: FontWeight.w500),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 6),
                     Text(
                       'Location:',
                       style: TextStyle(
@@ -871,47 +884,57 @@ class _CallExecutionState extends State<CallExecution> {
     );
   }
 
-  Widget _buildSummaryTile(String title, String count, Color color,
-      IconData icon, Color cardBackgroundColor, Color borderColor) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-        side: BorderSide(color: borderColor, width: 1),
-      ),
-      elevation: 2,
-      color: cardBackgroundColor,
-      child: Container(
-        width: 108,
-        height: 90,
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // Center the icon
-          mainAxisAlignment:
-              MainAxisAlignment.start, // Center the content horizontally
-          children: [
-            // Icon only
-            Icon(
-              icon,
-              color: color,
-              size: 20, // Adjust size for better fit without text
-            ),
-            const SizedBox(height: 2),
-            Text(
-              title,
-              style: const TextStyle(
+  Widget _buildSummaryTile(
+    String title,
+    String count,
+    Color color,
+    IconData icon,
+    Color cardBackgroundColor,
+    Color borderColor,
+  ) {
+    return Flexible(
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide(color: borderColor, width: 1),
+        ),
+        elevation: 2,
+        color: cardBackgroundColor,
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          constraints: const BoxConstraints(minWidth: 0), // Prevent overflow
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                color: color,
+                size: 20, // Adjust size for better fit
+              ),
+              const SizedBox(height: 4),
+              Flexible(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                count,
+                style: TextStyle(
                   color: Colors.black,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              count,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold),
-            )
-          ],
+                  fontSize: MediaQuery.of(context).size.width < 400 ? 12 : 14,
+                  fontWeight: FontWeight.bold,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -935,3 +958,213 @@ class _CallExecutionState extends State<CallExecution> {
     );
   }
 }
+
+Widget _buildWorkingStatusDialog(BuildContext context) {
+  int selectedWorkingStatus = 0; 
+  int selectedVisitStatus = 0; 
+
+  return StatefulBuilder(
+    builder: (context, setState) {
+      return AlertDialog(
+        insetPadding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        title: const Text(
+          'Working Status',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Working Status Options
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.only(
+                        top: 8, bottom: 8, left: 0, right: 4),
+                    child: Row(
+                      children: [
+                        Radio<int>(
+                          value: 0,
+                          groupValue: selectedWorkingStatus,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedWorkingStatus = value!;
+                            });
+                          },
+                          activeColor: Colors.blue.shade500,
+                          visualDensity: VisualDensity.compact,
+                        ),
+                        const Expanded(
+                          child: Text(
+                            'Local Working',
+                            style: TextStyle(fontSize: 14),
+                            softWrap: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade300),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      children: [
+                        Radio<int>(
+                          value: 1,
+                          groupValue: selectedWorkingStatus,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedWorkingStatus = value!;
+                            });
+                          },
+                          activeColor: Colors.blue,
+                          visualDensity: VisualDensity.compact,
+                        ),
+                        const Expanded(
+                          child: Text(
+                            'Out of Station',
+                            style: TextStyle(fontSize: 14),
+                            softWrap: true,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            if (selectedWorkingStatus == 1) ...[
+              const SizedBox(height: 16),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Select Status',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey.shade300),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Row(
+                        children: [
+                          Radio<int>(
+                            value: 0,
+                            groupValue: selectedVisitStatus,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedVisitStatus = value!;
+                              });
+                            },
+                            activeColor: Colors.blue,
+                            visualDensity: VisualDensity.compact,
+                          ),
+                          const Expanded(
+                            child: Text(
+                              'Day Visit',
+                              style: TextStyle(fontSize: 14),
+                              softWrap: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey.shade300),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Row(
+                        children: [
+                          Radio<int>(
+                            value: 1,
+                            groupValue: selectedVisitStatus,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedVisitStatus = value!;
+                              });
+                            },
+                            activeColor: Colors.blue,
+                            visualDensity: VisualDensity.compact,
+                          ),
+                          const Expanded(
+                            child: Text(
+                              'Night Stay',
+                              style: TextStyle(fontSize: 14),
+                              softWrap: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+
+            const SizedBox(height: 16),
+
+            // Cancel and Save Buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                  ),
+                  onPressed: () {
+                    // Handle Save action here
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    'Save',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
