@@ -300,7 +300,7 @@ class _AddEventState extends State<AddEvent> {
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
                               color: _selectedTime == "Morning"
-                                  ? Colors.blue
+                                  ? Colors.blue.shade50
                                   : Colors.white,
                               borderRadius: BorderRadius.circular(8),
                               border: _selectedTime == "Morning"
@@ -313,18 +313,14 @@ class _AddEventState extends State<AddEvent> {
                                 Icon(
                                   Icons.wb_sunny_outlined,
                                   size: 18,
-                                  color: _selectedTime == "Morning"
-                                      ? Colors.white
-                                      : Colors.black,
+                                  color:  Colors.black,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
                                   'Morning',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: _selectedTime == "Morning"
-                                        ? Colors.white
-                                        : Colors.black,
+                                    color:  Colors.black,
                                   ),
                                 ),
                               ],
@@ -344,10 +340,12 @@ class _AddEventState extends State<AddEvent> {
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
                               color: _selectedTime == "Evening"
-                                  ? Colors.blue
+                                  ? Colors.blue.shade50
                                   : Colors.white,
                               borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: Colors.grey.shade300),
+                              border:_selectedTime == "Evening"
+                              ? Border.all(color: Colors.blue)
+                              : Border.all(color: Colors.white),
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -355,18 +353,14 @@ class _AddEventState extends State<AddEvent> {
                                 Icon(
                                   Icons.nights_stay_outlined,
                                   size: 18,
-                                  color: _selectedTime == "Evening"
-                                      ? Colors.white
-                                      : Colors.black,
+                                  color:  Colors.black,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
                                   'Evening',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: _selectedTime == "Evening"
-                                        ? Colors.white
-                                        : Colors.black,
+                                    color:  Colors.black,
                                   ),
                                 ),
                               ],

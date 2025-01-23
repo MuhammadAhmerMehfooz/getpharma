@@ -14,7 +14,7 @@ class WorkPlan extends StatefulWidget {
 
 class _WorkPlanState extends State<WorkPlan> {
   int selectedIndex = 0;
-  bool isTsmLogin = true; // Hardcoded for demo; set it to false for DSM login
+  bool isTsmLogin = false; // Hardcoded for demo; set it to false for DSM login
   late DateTime selectedDay;
   late DateTime focusedDay;
   String? selectedButton;
@@ -108,23 +108,29 @@ class _WorkPlanState extends State<WorkPlan> {
                     ),
                   ),
                   SizedBox(width: 8),
-                  Text(
-                    "Draft",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                   Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.orange.shade100,
+                    ),
+                    child: Text(
+                      "Draft",
+                      style: TextStyle(
+                        color: Colors.orange.shade900,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Spacer(),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Last Saved:",
                         style: TextStyle(
                           color: Colors.grey[700],
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -132,9 +138,8 @@ class _WorkPlanState extends State<WorkPlan> {
                       Text(
                         "January 2, 2025", // Example date, you can replace it with dynamic data
                         style: TextStyle(
-                          color: Colors.blue,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -148,16 +153,25 @@ class _WorkPlanState extends State<WorkPlan> {
           if (selectedIndex == 2) ...[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildForPending("All"),
-                  _buildForPending("Pending"),
-                  _buildForPending("Reworked"),
-                  _buildForPending("Approved by me"),
-                ],
+              child: SingleChildScrollView(
+                scrollDirection:
+                    Axis.horizontal, 
+                child: Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.start, 
+                  children: [
+                    _buildForPending("All"),
+                    SizedBox(width: 4),
+                    _buildForPending("Pending"),
+                    SizedBox(width: 4),
+                    _buildForPending("Reworked"),
+                    SizedBox(width: 4),
+                    _buildForPending("Approved by me"),
+                  ],
+                ),
               ),
             ),
+
             SizedBox(height: 20),
             // Display content based on _selectedSubTabIndex
             if (_selectedSubTabIndex == 0) _buildAllContent(),
@@ -171,7 +185,7 @@ class _WorkPlanState extends State<WorkPlan> {
       bottomNavigationBar: selectedIndex == 3
           ? null
           : Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               decoration: BoxDecoration(
                 color: Colors.grey[100],
                 boxShadow: [
@@ -257,9 +271,7 @@ class _WorkPlanState extends State<WorkPlan> {
                         ).then((_) {});
                       },
                       style: OutlinedButton.styleFrom(
-                        backgroundColor: selectedButton == 'Save Plan'
-                            ? Colors.blue
-                            : Colors.white70,
+                        backgroundColor:  Colors.white70,
                         side: BorderSide(
                           color: Colors.black,
                           width: 2,
@@ -273,9 +285,7 @@ class _WorkPlanState extends State<WorkPlan> {
                       child: Text(
                         'Save Plan',
                         style: TextStyle(
-                          color: selectedButton == 'Save Plan'
-                              ? Colors.white
-                              : Colors.black,
+                          color:  Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -301,13 +311,7 @@ class _WorkPlanState extends State<WorkPlan> {
                         );
                       },
                       style: OutlinedButton.styleFrom(
-                        backgroundColor: selectedButton ==
-                                (selectedIndex == 1
-                                    ? 'Resubmit Plan'
-                                    : 'Submit Plan')
-                            ? Colors.blue
-                            : Colors.white70,
-                        side: BorderSide(color: Colors.black, width: 2),
+                        backgroundColor: Colors.blue,
                         padding:
                             EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                         shape: RoundedRectangleBorder(
@@ -317,12 +321,7 @@ class _WorkPlanState extends State<WorkPlan> {
                       child: Text(
                         selectedIndex == 1 ? 'Resubmit Plan' : 'Submit Plan',
                         style: TextStyle(
-                          color: selectedButton ==
-                                  (selectedIndex == 1
-                                      ? 'Resubmit Plan'
-                                      : 'Submit Plan')
-                              ? Colors.white
-                              : Colors.black,
+                          color: Colors.white,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -366,7 +365,7 @@ class _WorkPlanState extends State<WorkPlan> {
         style: TextStyle(
           color: Colors.black,
           fontSize: 14,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
@@ -388,11 +387,12 @@ class _WorkPlanState extends State<WorkPlan> {
           color: isSelected ? Colors.blue : Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: isSelected ? Colors.blue : Colors.grey,
+            color: isSelected ? Colors.blue : Colors.white,
           ),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -800,23 +800,29 @@ class _WorkPlanState extends State<WorkPlan> {
                     ),
                   ),
                   SizedBox(width: 8),
-                  Text(
-                    "Draft",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.orange.shade100,
+                    ),
+                    child: Text(
+                      "Draft",
+                      style: TextStyle(
+                        color: Colors.orange.shade900,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Spacer(),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Last Saved:",
                         style: TextStyle(
                           color: Colors.grey[700],
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -824,13 +830,12 @@ class _WorkPlanState extends State<WorkPlan> {
                       Text(
                         "January 2, 2025", // Example date, you can replace it with dynamic data
                         style: TextStyle(
-                          color: Colors.blue,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
             ),
@@ -1504,29 +1509,39 @@ class _WorkPlanState extends State<WorkPlan> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Reworks Dates",
-              style: TextStyle(
-                color: Colors.grey[800],
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, top: 8.0),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Rework Dates",
+                style: TextStyle(
+                  color: Colors.grey[800],
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
           Padding(
             padding:
-                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
             child: Row(
               children: [
-                _buildDateTab("4 Sep 2024"),
-                SizedBox(width: 8),
-                _buildDateTab("6 Sep 2024"),
-                SizedBox(width: 8),
-                _buildDateTab("8 Sep 2024"),
+                Expanded(
+                  child: _buildDateTab("4 Sep 2024"),
+                ),
+                SizedBox(width: 6),
+                Expanded(
+                  child: _buildDateTab("6 Sep 2024"),
+                ),
+                SizedBox(width: 6),
+                Expanded(
+                  child: _buildDateTab("8 Sep 2024"),
+                ),
               ],
             ),
+
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10.0, top: 8.0),
@@ -1835,7 +1850,7 @@ class _WorkPlanState extends State<WorkPlan> {
                                     "Below Frequency",
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
@@ -2106,23 +2121,29 @@ class _WorkPlanState extends State<WorkPlan> {
                     ),
                   ),
                   SizedBox(width: 8),
-                  Text(
-                    "Draft",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                   Container(
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.orange.shade100,
+                    ),
+                    child: Text(
+                      "Draft",
+                      style: TextStyle(
+                        color: Colors.orange.shade900,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   Spacer(),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Last Saved:",
                         style: TextStyle(
                           color: Colors.grey[700],
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -2130,13 +2151,12 @@ class _WorkPlanState extends State<WorkPlan> {
                       Text(
                         "January 2, 2025", // Example date, you can replace it with dynamic data
                         style: TextStyle(
-                          color: Colors.blue,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
             ),
