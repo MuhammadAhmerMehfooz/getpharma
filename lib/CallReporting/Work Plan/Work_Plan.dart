@@ -97,7 +97,7 @@ class _WorkPlanState extends State<WorkPlan> {
             Container(
               color: Colors.white,
               padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -1551,6 +1551,11 @@ class _WorkPlanState extends State<WorkPlan> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Divider(
+          color: Colors.grey.shade300, // Light grey line color
+          thickness: 1, // Thin line
+          height: 1, // No extra spacing around the line
+        ),
         Container(
           color: Colors.white,
           padding: const EdgeInsets.only(left: 14.0, top: 8.0),
